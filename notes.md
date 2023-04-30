@@ -1,13 +1,13 @@
 # C keywords that deliberately aren't in cinimal
-- No unsigned numbers, including `size_t`
-- No `const`/`static`
-- No `typedef`/`define`
+- No `const` / `static`
+- No `typedef` / `define`
 - No `for`
 - No `switch()`
-- No `++`
+- No `++` / `--`
 - No `#include`
 - No `;`
 - No `sizeof()`
+- No unsigned numbers, including `size_t`
 
 # C concepts that deliberately aren't in cinimal
 - No multiline comments
