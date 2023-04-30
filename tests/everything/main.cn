@@ -35,7 +35,7 @@ i32	main()
 
 	ptr i16 paw_count_ptr
 	paw_count_ptr = &paw_count
-	assert(*paw_count_ptr, 8)
+	assert(*paw_count_ptr == 8)
 
 	ptr person people
 	people = malloc(2, person)
@@ -43,12 +43,12 @@ i32	main()
 	ptr person frank
 	frank = &people[0]
 	frank->age = 24
-	assert(people[0]->age, 24)
+	assert(people[0]->age == 24)
 	frank->names.last_name = "frank"
 
-	assert(people[1].names.last_name, "")
+	assert(people[1].names.last_name == "")
 	people[1].country = country::ukraine
-	nassert(people[1].country, country::mexico)
+	assert(people[1].country != country::mexico)
 
 	free(people)
 
