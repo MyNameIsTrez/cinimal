@@ -24,27 +24,24 @@ i32	main()
 
 	i16 paw_count
 	paw_count = dog::get_paw_count(2)
-	assert(paw_count, 8)
 
-	ref person people
-	# secretly does people_ptr = alloc(2, person)
-	# and then person & people = people_ptr
-	people = alloc(2, person)
+	ptr i16 paw_count_ptr
+	paw_count_ptr = &paw_count
+	assert(*paw_count_ptr, 8)
 
-	ref person people2
-	people2 = people
+	ptr person people
+	people = malloc(2, person)
 
-	ref person frank
-	frank = people2[0]
-	frank.age = 24
-	assert(people[0].age, 24)
-	frank.names.last_name = "frank"
+	ptr person frank
+	frank = &people[0]
+	frank->age = 24
+	assert(people[0]->age, 24)
+	frank->names.last_name = "frank"
 
 	assert(people[1].names.last_name, "")
 	people[1].country = country::ukraine
 	nassert(people[1].country, country::mexico)
 
-	# secretly does free(people)
-	dealloc(people)
+	free(people)
 
 	return 0
