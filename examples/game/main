@@ -1,0 +1,49 @@
+import get_paw_count from game/animals/dog.t
+
+struct names
+	str first_name
+	str last_name
+
+enum country
+	ukraine
+	mexico
+
+struct person
+	i8 age
+	names names
+	country country
+
+i32	main()
+	i32 i
+	i = 0
+	while i < 3
+		print(i)
+		i += 1
+
+	i16 paw_count
+	paw_count = dog::get_paw_count(2)
+	assert(paw_count, 8)
+
+	# i16 ref paw_count_ref
+	# paw_count_ref = &paw_count
+	# paw_count_ref = 1337
+	# assert(paw_count, 1337)
+
+	vector person people
+	people = allocate_vector(2, person)
+
+	person frank
+	frank = people[0]
+	frank.age = 24
+	frank.names.first_name = "frank"
+
+	assert(people[1].names.last_name, "")
+	people[1].country = country::ukraine
+	nassert(people[1].country, country::mexico)
+
+	vector person people2
+	people2 = people
+
+	deallocate_vector(people)
+
+	return 0
