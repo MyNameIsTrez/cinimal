@@ -1,8 +1,12 @@
 *
 !*/
 
-!examples/everything/animals/dog.cn
-!examples/everything/main.cn
+!tests/everything/animals/dog.c
+!tests/everything/animals/dog.cn
+!tests/everything/animals/dog.h
+!tests/everything/main.c
+!tests/everything/main.cn
+!tests/everything/typedefs.h
 
 !.gitignore
 
