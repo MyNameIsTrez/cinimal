@@ -55,8 +55,6 @@
 - No trailing comma in import statement
 
 # Questions
-- How to make import syntax translatable to C?
-- How to make namespaces translatable to C?
 - How badly do I want refs? Do I want them to never be NULL? If I don't mind the programmer needing to use * and &, then I should use pointers instead
-- Do I want to implement `ptr unknown`, and have that be translated to `void *`? Or do I want to disallow such polymorphism?
+- Do I want to implement `ptr unknown`, and have that be transpiled to `void *`? Or do I want to disallow such polymorphism?
 - No splitting of import statement across multiple lines?
