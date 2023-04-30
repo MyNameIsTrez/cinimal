@@ -43,14 +43,14 @@ i32 main()
 		i += 1
 	}
 
-	dog::bark();
+	dog_bark();
 
 	i16 paw_count;
-	paw_count = dog::get_paw_count(2);
+	paw_count = dog_get_paw_count(2);
 
 	i16 * paw_count_ptr;
 	paw_count_ptr = &paw_count;
-	assert(*paw_count_ptr, 8);
+	assert(*paw_count_ptr == 8);
 
 	struct person * people;
 	people = calloc(2 * sizeof(struct person));
@@ -58,12 +58,12 @@ i32 main()
 	struct person * frank;
 	frank = &people[0];
 	frank->age = 24;
-	assert(people[0]->age, 24);
+	assert(people[0]->age == 24);
 	frank->names.last_name = "frank";
 
-	assert(people[1].names.last_name, "");
-	people[1].country = country::ukraine;
-	nassert(people[1].country, country::mexico);
+	assert(strcmp(people[1].names.last_name, "") == 0);
+	people[1].country = country_ukraine;
+	assert(people[1].country != country_mexico);
 
 	free(people);
 	people = NULL;
