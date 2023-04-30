@@ -14,6 +14,8 @@ struct person
 	country country
 
 i32	main()
+	# Example comment
+
 	i32 i
 	i = 0
 	while i < 3

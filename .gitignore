@@ -6,7 +6,6 @@
 !tests/everything/animals/dog.h
 !tests/everything/main.c
 !tests/everything/main.cn
-!tests/everything/typedefs.h
 
 !.gitignore
 

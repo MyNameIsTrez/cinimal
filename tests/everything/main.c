@@ -1,6 +1,6 @@
 #include "animals/dog.h"
 
-#include "typedefs.h"
+#include <stdint.h>
 
 struct names
 {
@@ -16,14 +16,16 @@ enum country
 
 struct person
 {
-	i8 age;
+	int8_t age;
 	struct names names;
 	country country;
 }
 
-i32 main()
+int32_t main()
 {
-	i32 i;
+	// Example comment
+
+	int32_t i;
 	i = 0;
 	while (i < 3)
 	{
@@ -45,10 +47,10 @@ i32 main()
 
 	dog_bark();
 
-	i16 paw_count;
+	int16_t paw_count;
 	paw_count = dog_get_paw_count(2);
 
-	i16 * paw_count_ptr;
+	int16_t * paw_count_ptr;
 	paw_count_ptr = &paw_count;
 	assert(*paw_count_ptr == 8);
 
