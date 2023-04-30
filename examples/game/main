@@ -24,26 +24,22 @@ i32	main()
 	paw_count = dog::get_paw_count(2)
 	assert(paw_count, 8)
 
-	# i16 ref paw_count_ref
-	# paw_count_ref = &paw_count
-	# paw_count_ref = 1337
-	# assert(paw_count, 1337)
+	ref person people
+	people = alloc(2, person)
 
-	vector person people
-	people = allocate_vector(2, person)
+	ref person people2
+	people2 = people
 
-	person frank
-	frank = people[0]
+	ref person frank
+	frank = people2[0]
 	frank.age = 24
+	assert(people[0].age, 24)
 	frank.names.first_name = "frank"
 
 	assert(people[1].names.last_name, "")
 	people[1].country = country::ukraine
 	nassert(people[1].country, country::mexico)
 
-	vector person people2
-	people2 = people
-
-	deallocate_vector(people)
+	dealloc(people)
 
 	return 0
