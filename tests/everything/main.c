@@ -19,7 +19,7 @@ struct person
 	int8_t age;
 	struct names names;
 	country country;
-}
+};
 
 int32_t main()
 {
