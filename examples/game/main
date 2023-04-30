@@ -25,6 +25,8 @@ i32	main()
 	assert(paw_count, 8)
 
 	ref person people
+	# secretly does people_ptr = alloc(2, person)
+	# and then person & people = people_ptr
 	people = alloc(2, person)
 
 	ref person people2
@@ -34,12 +36,13 @@ i32	main()
 	frank = people2[0]
 	frank.age = 24
 	assert(people[0].age, 24)
-	frank.names.first_name = "frank"
+	frank.names.last_name = "frank"
 
 	assert(people[1].names.last_name, "")
 	people[1].country = country::ukraine
 	nassert(people[1].country, country::mexico)
 
+	# secretly does free(people)
 	dealloc(people)
 
 	return 0
