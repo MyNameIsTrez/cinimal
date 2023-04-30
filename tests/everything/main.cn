@@ -38,7 +38,8 @@ i32	main()
 	assert(*paw_count_ptr == 8)
 
 	ptr person people
-	people = malloc(2, person)
+	people = calloc(2, person)
+	assert(people[0] == 0)
 
 	ptr person frank
 	frank = &people[0]
@@ -51,5 +52,6 @@ i32	main()
 	assert(people[1].country != country::mexico)
 
 	free(people)
+	assert(people == NULL)
 
 	return 0

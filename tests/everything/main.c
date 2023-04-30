@@ -4,8 +4,8 @@
 
 struct names
 {
-	char *first_name;
-	char *last_name;
+	char * first_name;
+	char * last_name;
 };
 
 enum country
@@ -56,6 +56,7 @@ int32_t main()
 
 	struct person * people;
 	people = calloc(2 * sizeof(struct person));
+	assert(people[0] == 0);
 
 	struct person * frank;
 	frank = &people[0];
@@ -69,6 +70,7 @@ int32_t main()
 
 	free(people);
 	people = NULL;
+	assert(people == NULL);
 
 	return 0;
 }
