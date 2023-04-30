@@ -1,2 +1,5 @@
+void bark()
+	print("bark")
+
 i32 get_paw_count(i32 dog_count)
 	return dog_count * 4

@@ -1,4 +1,4 @@
-import get_paw_count from game/animals/dog.t
+import { bark, get_paw_count } from animals/dog.t
 
 struct names
 	str first_name
@@ -19,6 +19,8 @@ i32	main()
 	while i < 3
 		print(i)
 		i += 1
+
+	dog::bark()
 
 	i16 paw_count
 	paw_count = dog::get_paw_count(2)
