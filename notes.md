@@ -8,6 +8,7 @@
 - No `;`
 - No `sizeof()`
 - No unsigned numbers, including `size_t`
+- No `void *`, nor replacements
 
 # C concepts that deliberately aren't in cinimal
 - No multiline comments
@@ -56,5 +57,4 @@
 
 # Questions
 - How badly do I want refs? Do I want them to never be NULL? If I don't mind the programmer needing to use * and &, then I should use pointers instead
-- Do I want to implement `ptr unknown`, and have that be transpiled to `void *`? Or do I want to disallow such polymorphism?
 - No splitting of import statement across multiple lines?
