@@ -8,7 +8,7 @@
 - No `;`
 - No `sizeof()`
 - No unsigned numbers, including `size_t`
-- No `void *`, nor replacements
+- No `void *`, nor 
 
 # C concepts that deliberately aren't in cinimal
 - No multiline comments
