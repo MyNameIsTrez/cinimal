@@ -1,11 +1,11 @@
 *
 !*/
 
-!tests/everything/animals/dog.c
 !tests/everything/animals/dog.cn
-!tests/everything/animals/dog.h
-!tests/everything/main.c
+!tests/everything/animals/dog.cpp
+!tests/everything/animals/dog.hpp
 !tests/everything/main.cn
+!tests/everything/main.cpp
 
 !.gitignore
 

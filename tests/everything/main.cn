@@ -13,7 +13,7 @@ struct person
 	names names
 	country country
 
-i32	main()
+i32 main()
 	# Example comment
 
 	i32 i
@@ -33,16 +33,16 @@ i32	main()
 	i16 paw_count
 	paw_count = dog::get_paw_count(2)
 
-	ptr i16 paw_count_ptr
-	paw_count_ptr = &paw_count
-	assert(*paw_count_ptr == 8)
+	ref i16 paw_count_ref
+	paw_count_ref = paw_count
+	assert(paw_count_ref == 8)
 
-	ptr person people
+	ref person[] people
 	people = calloc(2, person)
 	assert(people[0] == 0)
 
-	ptr person frank
-	frank = &people[0]
+	ref person frank
+	frank = people[0]
 	frank->age = 24
 	assert(people[0]->age == 24)
 	frank->names.last_name = "frank"
