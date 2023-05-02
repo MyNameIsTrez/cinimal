@@ -11,65 +11,77 @@ struct Names
 	std::string last_name;
 };
 
-enum struct Country
+namespace Country {
+enum Country
 {
 	ukraine,
 	mexico,
 };
+}
 
 struct Person
 {
-	int8_t age;
+	double age;
 	struct Names names;
-	Country country;
+	Country::Country country;
 };
+
+void twice(int32_t & n)
+{
+    n *= 2;
+}
 
 int32_t main()
 {
-	// Example comment
-
 	int32_t i;
 	i = 0;
 	while (i < 3)
 	{
 		if (i == 0)
 		{
-			std::cout << "a" << std::endl;
+			std::cout << "deez" << std::endl;
 		}
 		else if (i == 1)
 		{
-			std::cout << "b" << std::endl;
+			assert(Dog::get_paw_count(i) == 4);
 		}
 		else
 		{
-			std::cout << "c" << std::endl;
+			assert(Country::mexico == 1);
 		}
 
 		i += 1;
 	}
 
+	twice(i);
+	assert(i == 6);
+
 	Dog::bark();
 
-	int16_t paw_count;
-	paw_count = Dog::get_paw_count(2);
-
-	int16_t &paw_count_ref = paw_count;
-	assert(paw_count_ref == 8);
-
 	struct Person *people_ptr;
-	people_ptr = (struct Person *)calloc(2, sizeof(struct Person));
+	people_ptr = new struct Person[2];
 	struct Person *&people = people_ptr;
 
 	struct Person &frank = people[0];
-	frank.age = 24;
-	assert(people[0].age == 24);
+
+	frank.age = 24 * 1.5;
+	assert(people[0].age == 36);
 	frank.names.last_name = "frank";
 
 	assert(people[1].names.last_name == "");
 	people[1].country = Country::ukraine;
 	assert(people[1].country != Country::mexico);
 
-	free(people);
+    // This grows the array and frees the old one
+    delete[] people;
+	people_ptr = new struct Person[3];
+
+	people_ptr[0].age = 0;
+	people_ptr[1].age = 1;
+	people_ptr[2].age = 2;
+	assert(people_ptr[2].age == 2);
+
+	delete[] people;
 	people = nullptr;
 	assert(people == nullptr);
 

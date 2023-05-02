@@ -9,48 +9,53 @@ enum Country
 	mexico
 
 struct Person
-	i8 age
+	f64 age
 	Names names
 	Country country
 
-i32 main()
-	# Example comment
+void twice(ref i32 n)
+	n *= 2
 
+i32 main()
 	i32 i
 	i = 0
 	while i < 3
-		if a == 0 then
-			print("a")
-		elif a == 1 then
-			print("b")
+		if i == 0
+			print("deez")
+		elif i == 1
+			assert(dog::get_paw_count(i) == 4)
 		else
-			print("c")
+			assert(Country::mexico == 1)
 
 		i += 1
 
+	twice(i)
+	assert(i == 6)
+
 	Dog::bark()
 
-	i16 paw_count
-	paw_count = Dog::get_paw_count(2)
-
-	ref i16 paw_count_ref
-	paw_count_ref = paw_count
-	assert(paw_count_ref == 8)
-
-	ref Person[] people
-	people = calloc(2, Person)
+	Person[] people
+	people = array(2)
 
 	ref Person frank
 	frank = people[0]
-	frank.age = 24
-	assert(people[0].age == 24)
+
+	frank.age = 24 * 1.5
+	assert(people[0].age == 36)
 	frank.names.last_name = "frank"
 
 	assert(people[1].names.last_name == "")
 	people[1].country = Country::ukraine
 	assert(people[1].country != Country::mexico)
 
+	# This grows the array and frees the old one
+	people = array(3)
+	people[0].age = 0
+	people[1].age = 1
+	people[2].age = 2
+	assert(people[2].age == 2)
+
 	free(people)
-	assert(people == NULL)
+	assert(people == freed)
 
 	return 0
