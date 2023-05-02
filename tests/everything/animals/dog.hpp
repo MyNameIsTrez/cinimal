@@ -5,8 +5,8 @@
 namespace Dog
 {
 
-void bark(void);
+void bark();
 
-int32_t get_paw_count(int32_t dog_count);
+int32_t get_paw_count();
 
 }

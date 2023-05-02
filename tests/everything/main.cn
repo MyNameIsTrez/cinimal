@@ -21,11 +21,9 @@ i32 main()
 	i = 0
 	while i < 3
 		if i == 0
-			print("deez")
-		elif i == 1
-			assert(dog::get_paw_count(i) == 4)
+			print("foo")
 		else
-			assert(Country::mexico == 1)
+			print("bar")
 
 		i += 1
 
@@ -33,29 +31,33 @@ i32 main()
 	assert(i == 6)
 
 	Dog::bark()
+	assert(dog::get_paw_count() == 4)
+
+	assert(Country::mexico == 1)
 
 	Person[] people
-	people = array(2)
 
-	ref Person frank
-	frank = people[0]
-
+	Person frank
 	frank.age = 24 * 1.5
-	assert(people[0].age == 36)
+	assert(frank.age == 36)
 	frank.names.last_name = "frank"
+	people.push(frank)
 
-	assert(people[1].names.last_name == "")
-	people[1].country = Country::ukraine
-	assert(people[1].country != Country::mexico)
+	Person john
+	assert(john.names.last_name == "")
+	john.country = Country::mexico
+	assert(john.country != Country::ukraine)
+	people.push(john)
 
-	# This grows the array and frees the old one
-	people = array(3)
-	people[0].age = 0
-	people[1].age = 1
-	people[2].age = 2
-	assert(people[2].age == 2)
+	assert(people.size() == 2)
+	Person last
+	last = people.pop()
+	assert(last.country == Country::mexico)
+	assert(people.size() == 1)
 
 	free(people)
 	assert(people == freed)
+
+	# people.push() after freeing is not allowed
 
 	return 0

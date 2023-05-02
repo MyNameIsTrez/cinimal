@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <iostream>
 #include <string>
+#include <vector>
 
 struct Names
 {
@@ -12,11 +13,13 @@ struct Names
 };
 
 namespace Country {
+
 enum Country
 {
 	ukraine,
 	mexico,
 };
+
 }
 
 struct Person
@@ -39,15 +42,11 @@ int32_t main()
 	{
 		if (i == 0)
 		{
-			std::cout << "deez" << std::endl;
-		}
-		else if (i == 1)
-		{
-			assert(Dog::get_paw_count(i) == 4);
+			std::cout << "foo" << std::endl;
 		}
 		else
 		{
-			assert(Country::mexico == 1);
+			std::cout << "bar" << std::endl;
 		}
 
 		i += 1;
@@ -57,31 +56,33 @@ int32_t main()
 	assert(i == 6);
 
 	Dog::bark();
+	assert(Dog::get_paw_count() == 4);
 
-	struct Person *people_ptr;
-	people_ptr = new struct Person[2];
-	struct Person *&people = people_ptr;
+	assert(Country::mexico == 1);
 
-	struct Person &frank = people[0];
+	std::vector<struct Person> *people_ptr = new std::vector<struct Person>;
+	std::vector<struct Person> *&people = people_ptr;
 
+	struct Person frank = {};
 	frank.age = 24 * 1.5;
-	assert(people[0].age == 36);
+	assert(frank.age == 36);
 	frank.names.last_name = "frank";
+	people->push_back(frank);
 
-	assert(people[1].names.last_name == "");
-	people[1].country = Country::ukraine;
-	assert(people[1].country != Country::mexico);
+	struct Person john = {};
+	assert(john.names.last_name == "");
+	john.country = Country::mexico;
+	assert(john.country != Country::ukraine);
+	people->push_back(john);
 
-    // This grows the array and frees the old one
-    delete[] people;
-	people_ptr = new struct Person[3];
+	assert(people->size() == 2);
+	struct Person last;
+	last = people->back();
+	people->pop_back();
+	assert(last.country == Country::mexico);
+	assert(people->size() == 1);
 
-	people_ptr[0].age = 0;
-	people_ptr[1].age = 1;
-	people_ptr[2].age = 2;
-	assert(people_ptr[2].age == 2);
-
-	delete[] people;
+	delete people;
 	people = nullptr;
 	assert(people == nullptr);
 
