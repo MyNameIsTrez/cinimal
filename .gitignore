@@ -1,6 +1,9 @@
 *
 !*/
 
+!tests/basic/main.cn
+!tests/basic/main.cpp
+
 !tests/everything/animals/dog.cn
 !tests/everything/animals/dog.cpp
 !tests/everything/animals/dog.hpp

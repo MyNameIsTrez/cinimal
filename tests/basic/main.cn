@@ -1,0 +1,18 @@
+void twice(ref i32 n)
+	n *= 2
+
+i32 main()
+	i32 i
+	i = 0
+	while i < 3
+		if i == 0
+			print("foo")
+		else
+			print("bar")
+
+		i += 1
+
+	twice(i)
+	assert(i == 6)
+
+	return 0
