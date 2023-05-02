@@ -29,7 +29,7 @@ struct Person
 	Country::Country country;
 };
 
-void twice(int32_t & n)
+void doubling(int32_t & n)
 {
     n *= 2;
 }
@@ -52,7 +52,7 @@ int32_t main()
 		i += 1;
 	}
 
-	twice(i);
+	doubling(i);
 	assert(i == 6);
 
 	Dog::bark();

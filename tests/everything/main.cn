@@ -13,7 +13,7 @@ struct Person
 	Names names
 	Country country
 
-void twice(ref i32 n)
+void doubling(ref i32 n)
 	n *= 2
 
 i32 main()
@@ -27,7 +27,7 @@ i32 main()
 
 		i += 1
 
-	twice(i)
+	doubling(i)
 	assert(i == 6)
 
 	Dog::bark()
