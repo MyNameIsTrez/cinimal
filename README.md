@@ -1,21 +1,9 @@
-# cinimal
+# C + minimal = cinimal
 
-Minimalistic C and Python-like language.
+![Screenshot of cinimal code on the left, and the C++ code it gets transpiled to on the right.](screenshots/basic.png)
 
-## How it works
+## How to use it
 
-`transpile.py` transpiles a cinimal `.cn` file to a `.c` file.
+`transpile.py` transpiles a cinimal `.cn` file to a `.cpp` file.
 
-The user is responsible for compiling the generated `.c` file.
-
-Transpiling to C just means turning this:
-```cn
-i32 main()
-	return 0
-```
-into this:
-```c
-int32_t main() {
-	return 0;
-}
-```
+It's the user's responsibility to compile the `.cpp` file.
