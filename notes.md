@@ -110,3 +110,30 @@ Refs vs (const) pointers:
 - Require functions to be defined in opposite order of C, so with the main() at the top
 - Do I want to replace vector with a circular buffer?
 - A function starting with a leading _ is private and shouldn't be added to a header
+- Are more complex data structures like trees possible?
+- Do I just want to go back to a generic calloc()?
+- Isn't it problematic that people is a ref to a local variable people_ptr?
+
+
+
+
+- Is it possible to have refs be in POD structs?
+- Maybe I should have refs store a handle index, so that the handle can be pointed to something else? This repointing would suck though, since vector would have to be rewritten? I'm thinking a global `vector<void *> memory_handles`
+- Can every data structure be created using a circular buffer + references?
+- Make cimple logo a C formed by a few rects
+- Rethink what cimple is and isn't
+- Let python replace i32 with int?
+- Replace malloc() with allocate() and free() with deallocate()
+- Let allocate() and deallocate() just be in a real memory.cn module
+- Have dereference operator be on the right in cinimal, so -> isn't needed
+- Let declaration order be
+> * int foo
+instead of C's
+> int * foo
+- Do I want ! and ~ and - and + and casting to also be on the right?
+- Update basic test to use ptr and & and *, and change doubling() to add(a)
+- Use ++ in basic test for cn and cpp
+- Don't let open braces start on new line?
+- Use new basic test comparison screenshot in README
+- Rename "void *" to "ptr thing"
+- Don't have the variable name in the declaration line
