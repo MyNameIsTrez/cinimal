@@ -1,18 +1,19 @@
-void doubling(ref i32 n)
-	n *= 2
+void add(ptr i32 n)
+	n*++
 
 i32 main()
 	i32 i
-	i = 0
+	assert(i == 0)
+
 	while i < 3
 		if i == 0
 			print("foo")
 		else
 			print("bar")
+		i++
 
-		i += 1
-
-	doubling(i)
-	assert(i == 6)
+	assert(i == 3)
+	add(&i)
+	assert(i == 4)
 
 	return 0

@@ -1,31 +1,27 @@
-#include <cassert>
-#include <iostream>
+#include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
 
-void doubling(int32_t & n)
-{
-    n *= 2;
+void add(int32_t * n) {
+    (*n)++;
 }
 
-int32_t main()
-{
-	int32_t i;
-	i = 0;
-	while (i < 3)
-	{
-		if (i == 0)
-		{
-			std::cout << "foo" << std::endl;
-		}
-		else
-		{
-			std::cout << "bar" << std::endl;
-		}
+int32_t main() {
+	int32_t i = {0};
+	assert(i == 0);
 
-		i += 1;
+	while (i < 3) {
+		if (i == 0) {
+			printf("foo\n");
+		} else {
+			printf("bar\n");
+		}
+		i++;
 	}
 
-	doubling(i);
-	assert(i == 6);
+	assert(i == 3);
+	add(&i);
+	assert(i == 4);
 
 	return 0;
 }
