@@ -65,9 +65,9 @@ int32_t main()
 
 	struct Person frank = {};
 	frank.age = 24 * 1.5;
-	assert(frank.age == 36);
 	frank.names.last_name = "frank";
 	people->push_back(frank);
+	assert(people->at(0).age == 36);
 
 	struct Person john = {};
 	assert(john.names.last_name == "");

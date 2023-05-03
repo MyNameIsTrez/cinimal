@@ -31,7 +31,7 @@ i32 main()
 	assert(i == 6)
 
 	Dog::bark()
-	assert(dog::get_paw_count() == 4)
+	assert(Dog::get_paw_count() == 4)
 
 	assert(Country::mexico == 1)
 
@@ -39,9 +39,9 @@ i32 main()
 
 	Person frank
 	frank.age = 24 * 1.5
-	assert(frank.age == 36)
 	frank.names.last_name = "frank"
 	people.push(frank)
+	assert(people[0].age == 36)
 
 	Person john
 	assert(john.names.last_name == "")
