@@ -1,10 +1,8 @@
-#include "animals/dog.hpp"
+#include "animals/dog.h"
 
-#include <cassert>
-#include <cstdint>
-#include <iostream>
-#include <string>
-#include <vector>
+#include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
 
 struct Names
 {
