@@ -18,7 +18,8 @@ void doubling(ref i32 n)
 
 i32 main()
 	i32 i
-	i = 0
+	assert(i == 0)
+
 	while i < 3
 		if i == 0
 			print("foo")

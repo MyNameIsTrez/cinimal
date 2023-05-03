@@ -36,8 +36,9 @@ void doubling(int32_t & n)
 
 int32_t main()
 {
-	int32_t i;
-	i = 0;
+	int32_t i = {};
+	assert(i == 0);
+
 	while (i < 3)
 	{
 		if (i == 0)
