@@ -98,3 +98,14 @@ Refs vs (const) pointers:
 - Pointer arithmetic is still possible on refs to memory
 - index[mem_ptr_ref] is still possible with refs to memory. Could be detected during transpilation by checking if the thing on the left of the [ is a pointer/reference
 - Can't use const * instead of c++, unless I let transpile.py add &, -> and * appropriately
+
+
+
+- Do I want to support lookup tables of functions? I could maybe use "auto" in CPP to get the function signature, but LUTs of fns smells of overcomplicated polymorphism
+- Add "everything" test screenshot to GH readme
+- No globals
+- No recreating freed vec
+- Throw an error on double free
+- No multidimensional vecs?
+- Require functions to be defined in opposite order of C, so with the main() at the top
+- Do I want templating for deque?
