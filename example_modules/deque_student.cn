@@ -5,7 +5,6 @@ struct DequeStudent
 	Student[] data
 	i32 start_index
 	i32 size
-	i32 capacity
 
 i32 main()
 	# TODO: Make sure this is 0-initialized when transpiled to C++!
@@ -31,18 +30,20 @@ i32 main()
 	assert(DequeStudent::pop_back(deque).age == 11)
 
 void push_front(ref DequeStudent deque, Student student)
-	if ??
-		_grow(deque)
+	_try_grow(deque.data)
 
-void _grow(ref DequeStudent deque)
-	Student[] new_data
+void _try_grow(ref Student[] data)
+	if data.size() >= data.capacity()
+		# TODO: How can I can set values at arbitrary indices with data.at()? Prefill data with 0s?
+		# TODO: Maybe for the best if I just always use deq instead of vec?
+		# TODO: I could always later on replace deq with my own circular buffer.
+		# Student[] new_data
 
-	# TODO: How to double the vector's capacity without exposing .reserve()?
-	# Do I need to expose .capacity()?
-	if deque.capacity == 0
-		deque.capacity = 1
-	deque.capacity *= 2
+		# while i < data.size()
+		# 	new_data.push(data[i])
+		# 	i += 1
 
+		# data.reserve(data.capacity() * 2)
 
 void push_back(ref DequeStudent deque, Student student)
 

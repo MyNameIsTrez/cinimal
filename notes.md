@@ -108,4 +108,5 @@ Refs vs (const) pointers:
 - Throw an error on double free
 - No multidimensional vecs?
 - Require functions to be defined in opposite order of C, so with the main() at the top
-- Do I want templating for deque?
+- Do I want to replace vector with a circular buffer?
+- A function starting with a leading _ is private and shouldn't be added to a header
