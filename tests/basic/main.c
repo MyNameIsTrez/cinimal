@@ -7,7 +7,7 @@ void add(int32_t * n) {
 }
 
 int32_t main() {
-	int32_t i = {0};
+	int32_t i = 0;
 	assert(i == 0);
 
 	while (i < 3) {
