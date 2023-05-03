@@ -1,0 +1,53 @@
+struct Student
+	f64 age
+
+struct DequeStudent
+	Student[] data
+	i32 start_index
+	i32 size
+	i32 capacity
+
+i32 main()
+	# TODO: Make sure this is 0-initialized when transpiled to C++!
+	DequeStudent deque
+
+	Student alice
+	alice.age = 10
+	DequeStudent::push_back(deque, alice)
+
+	Student bob
+	bob.age = 11
+	DequeStudent::push_back(deque, bob)
+
+	Student charles
+	charles.age = 9
+	DequeStudent::push_front(deque, charles)
+
+	assert(DequeStudent::at(deque, 0).age == 9)
+	assert(DequeStudent::at(deque, 1).age == 10)
+	assert(DequeStudent::at(deque, 2).age == 11)
+
+	assert(DequeStudent::pop_front(deque).age == 9)
+	assert(DequeStudent::pop_back(deque).age == 11)
+
+void push_front(ref DequeStudent deque, Student student)
+	if ??
+		_grow(deque)
+
+void _grow(ref DequeStudent deque)
+	Student[] new_data
+
+	# TODO: How to double the vector's capacity without exposing .reserve()?
+	# Do I need to expose .capacity()?
+	if deque.capacity == 0
+		deque.capacity = 1
+	deque.capacity *= 2
+
+
+void push_back(ref DequeStudent deque, Student student)
+
+ref Student pop_front(ref DequeStudent deque)
+
+ref Student pop_back(ref DequeStudent deque)
+
+ref Student at(ref DequeStudent deque, index)
