@@ -1,18 +1,12 @@
 #include "dog.h"
 
 #include <stdint.h>
+#include <stdio.h>
 
-namespace Dog
-{
-
-void bark()
-{
-	std::cout << "bark" << std::endl;
+void bark() {
+	printf("bark\n");
 }
 
-int32_t get_paw_count()
-{
+int32_t get_paw_count() {
 	return 4;
-}
-
 }

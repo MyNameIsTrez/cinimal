@@ -13,8 +13,8 @@ struct Person
 	Names names
 	Country country
 
-void doubling(ref i32 n)
-	n *= 2
+void add(ptr i32 n)
+	n*++
 
 i32 main()
 	i32 i
@@ -25,40 +25,39 @@ i32 main()
 			print("foo")
 		else
 			print("bar")
+		i++
 
-		i += 1
-
-	doubling(i)
-	assert(i == 6)
+	assert(i == 3)
+	add(&i)
+	assert(i == 4)
 
 	Dog::bark()
 	assert(Dog::get_paw_count() == 4)
 
 	assert(Country::mexico == 1)
 
-	Person[] people
+	arr Person people
+	people = allocate(2)
 
-	Person frank
+	ptr Person frank
+	frank = &people[0]
 	frank.age = 24 * 1.5
-	frank.names.last_name = "frank"
-	people.push(frank)
 	assert(people[0].age == 36)
+	frank.names.last_name = "frank"
+	assert(people[0].names.last_name == "frank")
 
-	Person john
-	assert(john.names.last_name == "")
-	john.country = Country::mexico
-	assert(john.country != Country::ukraine)
-	people.push(john)
+	assert(people[1].names.last_name == NULL);
 
-	assert(people.size() == 2)
-	Person last
-	last = people.pop()
-	assert(last.country == Country::mexico)
-	assert(people.size() == 1)
+	people[1].country = Country::mexico
+	assert(people[1].country != Country::ukraine)
 
 	free(people)
 	assert(people == freed)
 
-	# people.push() after freeing is not allowed
+	people = allocate(1)
+	people[0].age = 42
+	assert(people[0].age == 42)
+
+	free(people)
 
 	return 0

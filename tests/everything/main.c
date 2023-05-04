@@ -3,89 +3,77 @@
 #include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-struct Names
-{
-	std::string first_name;
-	std::string last_name;
+struct Names {
+	char *first_name;
+	char *last_name;
 };
 
-namespace Country {
-
-enum Country
-{
-	ukraine,
-	mexico,
+enum Country {
+	Country_ukraine,
+	Country_mexico,
 };
 
-}
-
-struct Person
-{
+struct Person {
 	double age;
 	struct Names names;
-	Country::Country country;
+	enum Country country;
 };
 
-void doubling(int32_t & n)
-{
-    n *= 2;
+void add(int32_t * n) {
+    (*n)++;
 }
 
-int32_t main()
-{
-	int32_t i = {};
+int32_t main() {
+	int32_t i = 0;
 	assert(i == 0);
 
-	while (i < 3)
-	{
-		if (i == 0)
-		{
-			std::cout << "foo" << std::endl;
+	while (i < 3) {
+		if (i == 0) {
+			printf("foo\n");
+		} else {
+			printf("bar\n");
 		}
-		else
-		{
-			std::cout << "bar" << std::endl;
-		}
-
-		i += 1;
+		i++;
 	}
 
-	doubling(i);
-	assert(i == 6);
+	assert(i == 3);
+	add(&i);
+	assert(i == 4);
 
-	Dog::bark();
-	assert(Dog::get_paw_count() == 4);
+	bark();
+	assert(get_paw_count() == 4);
 
-	assert(Country::mexico == 1);
+	assert(Country_mexico == 1);
 
-	std::vector<struct Person> *people_ptr = new std::vector<struct Person>;
-	std::vector<struct Person> *&people = people_ptr;
+	struct Person *people;
+	people = calloc(2, sizeof(struct Person));
 
-	struct Person frank = {};
-	frank.age = 24 * 1.5;
-	frank.names.last_name = "frank";
-	people->push_back(frank);
-	assert(people->at(0).age == 36);
+    struct Person *frank;
+    frank = &people[0];
+	frank->age = 24 * 1.5;
+	assert(people[0].age == 36);
+	frank->names.last_name = "frank";
+	assert(strcmp(people[0].names.last_name, "frank") == 0);
 
-	struct Person john = {};
-	assert(john.names.last_name == "");
-	john.country = Country::mexico;
-	assert(john.country != Country::ukraine);
-	people->push_back(john);
+	assert(people[1].names.last_name == NULL);
 
-	assert(people->size() == 2);
-	struct Person last;
-	last = people->back();
-	people->pop_back();
-	assert(last.country == Country::mexico);
-	assert(people->size() == 1);
+	people[1].country = Country_mexico;
+	assert(people[1].country != Country_ukraine);
 
-	delete people;
-	people = nullptr;
-	assert(people == nullptr);
+	free(people);
+	people = NULL;
+	assert(people == NULL);
 
-	std::cout << "All tests passed!" << std::endl;
+	people = calloc(1, sizeof(struct Person));
+	people[0].age = 42;
+	assert(people[0].age == 42);
+
+	free(people);
+	people = NULL;
+
+	printf("All tests passed!\n");
 
 	return 0;
 }
