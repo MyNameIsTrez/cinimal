@@ -1,138 +1,44 @@
-# C keywords that deliberately aren't in cinimal
-- No `const` / `static`
-- No `typedef` / `define`
-- No `for`
-- No `switch()`
-- No `++` / `--`
-- No `#include`
-- No `;`
-- No `sizeof()`
-- No unsigned numbers, including `size_t`
-- No `void *`
-- No `malloc()`, nor anything else heap related. Use globals for persistent storage.
-
-# C concepts that deliberately aren't in cinimal
-- No multiline comments
-- No recursion
-- No direct nesting of a struct definition inside of another struct definition; you have to instead define the inner struct before it
-- No comments outside of functions
-- No tabs anywhere, apart from for indentation
-- No casting
-- No aligning lines using spaces; minimum number of required spaces only
-- No declaring and assigning a variable on a single line
-- No redundant usage of `()`
-
-# TODO: ??
 - No built-in data structures
 - No built-in algorithms
-- No `else if`, only `elif`
-- No `using` C++ keyword
 - No usage of enums or imported functions without specifying their source: `animal::dog` and `dog::bark`
 - No importing relative to anything but the root directory
 - No usage of `..` in `import` statement
-
-# Rules
-- Only one variable declaration per line
-- Only one instruction per line, so no `while (i += 1)`
-
-# Misc
-- Only number types are signed ints and floating point numbers, so for example i32 and f16
-- Indentation scoping, rather than { }
-- `str` type
-- # for comments. A single space must always follow the #
-- Comments must be on their own line
-- `&&` and `||` should both only return booleans, so not the last/first value like in Python/JS, in order to retain C compatibility
-- Imports must be alphabetical
-- Functions imported in a single line must be alphabetical
-- `malloc()` uses `calloc()` under the hood
-- `free()` sets the pointer to NULL
-
-# Opinionated compiler:
-- snake_case for everything, including file and folder names
-- Functions have to be in the order in which they get called, with the main() always at the top, and the rest below it in the order in which they get called
-- All variable declarations must be as close as possible to the first assignment
-- Exactly 1 newline between every function, struct, and enum, with a required trailing newline
-- If there's an instruction before a variable declaration, including `if` and `while`, but excluding another variable declaration, then there must be a newline to separate it
-- If there's an instruction after an `if` or `while`, there must be a newline separating them
+- A function starting with a leading _ is private and shouldn't be added to a header
+- Let cinimal show variable declarations as being as close as possible to the first assignment
+- Exactly 1 newline between every function, struct, and enum
+- If there's an instruction before a variable declaration, including `if` and `while`, but excluding another variable declaration, let cinimal add a newline to separate the two
 - No trailing comma in import statement
+- No splitting of import statement across multiple lines
+- Sort all #includes in alphabetical order, and have a trailing comment stating which functions were included from it
+- Sort all functions in an import in alphabetical order
+
+# Show errors if
+- Show error if a variable is declared and assigned on a single line
+- Show error if the user states a function came from cinimal file X, but isn't defined there
+- Show error if `else if` is used, instead of `elif`
+- Sort all C imports in alphabetical order, and show an error if no function was included from it
+
+# TODO:
+- Add test showcasing only one instruction per line, so no `while (i += 1)`
+- Add test calling a function from a lookup table of functions
+- Add "everything" test screenshot to GH readme
+- Add test for multidimensional arrays on the heap and stack
+- Add test for function forward declaration
+- Add test for struct forward declaration
+- Add test for passing function as arg
+- Add union test
+- Add test showcasing one ptr declaration per line declaration the * of the declaration so it's on both lines
+- Add test showcasing const pointers need to be declared and assigned at once
+- Add test showcasing printf("%d\n", 42) being turned into print("%d", 42)
+- Add test showcasing printf("%d", 42) being turned into printf("%d", 42)
+- Add test showcasing redundant usage of `()` gets removed
+- Add test showcasing casting
+- Add test showcasing no direct nesting of a struct definition inside of another struct definition; you have to define the inner struct before it
+- Add test showcasing no tabs anywhere, apart from for indentation, and also show unless it's in a comment
+- Add test shocasing no aligning lines using spaces; show minimum number of required spaces only, and also show unless it's inside a comment
 
 # Questions
-- No splitting of import statement across multiple lines?
 - Not sure if there's anything better f64 can be translated to than a hardcoded double?
-
-
-
-- ref keyword must always come first in declarations. There can't be more than one.
-- Don't compile if get_paw_count isn't explicitly listed as coming from dog.cn in the import line
-- Don't compile if a function is listed as coming from a cinimal file, but isn't defined there
-- Don't compile if a function/struct forward declaration is attempted
-- No functions in variables
-- No function passing as arguments
-- The {} in the import line aren't optional
-- Let all inserted C includes be in alphabetical order, and have a trailing comment stating which function was included from it?
-- How to do lookup tables?
-- Do I want stack arrays? How would they be declared?
-- Include printf, assert, calloc, free, strdup, NULL
-- Let transpilation throw an error if a #include is present in the cinimal file
-- Add includes.cn test, that is there so one can try to remove inserted includes without breaking backwards compatibility
-- No union?
-- Wrap calloc() in code checking NULL?: https://stackoverflow.com/a/26844703/13279557
-- Let variables and pointers *always* be automatically initialized to 0. cinimal code is expected to use this, in order to not need to initialize values to 0 manually.
-- No pointer arithmetic?
-- No letting pointers change which memory block they point to?
-- No negative indexing
-- No indexing past calloc() block bounds
-- No using i[arr] syntax. Is this even possible with refs?
-- Prepend enum name to enum values in the .c files, so `country_ukraine`
-- Change ptr to ref, and change .c files to .cpp. Update readme, .gitignore, .cpp file contents, .cn file contents
-- Give ref a different syntax highlighting color than the rest of the types
-- Let AST generator throw an error if an unknown keyword is encountered, such as C++'s `throw`
-- Remove redundant ref demonstration in main.cn
-- Automatic freeing
-- Is the heap *that* useful to have?
-
-Refs vs (const) pointers:
-- Refs mean there's no need for & nor -> nor *
-- Pointer needs to be created to store calloc() result and to free it
-- Refs/const pointers need to be declared and assigned at once
-- Pointer arithmetic is still possible on refs to memory
-- index[mem_ptr_ref] is still possible with refs to memory. Could be detected during transpilation by checking if the thing on the left of the [ is a pointer/reference
-- Can't use const * instead of c++, unless I let transpile.py add &, -> and * appropriately
-
-
-
-- Do I want to support lookup tables of functions? I could maybe use "auto" in CPP to get the function signature, but LUTs of fns smells of overcomplicated polymorphism
-- Add "everything" test screenshot to GH readme
-- No globals
-- No recreating freed vec
-- Throw an error on double free
-- No multidimensional vecs?
-- Require functions to be defined in opposite order of C, so with the main() at the top
-- Do I want to replace vector with a circular buffer?
-- A function starting with a leading _ is private and shouldn't be added to a header
-- Are more complex data structures like trees possible?
-- Do I just want to go back to a generic calloc()?
-- Isn't it problematic that people is a ref to a local variable people_ptr?
-
-
-
-
-- Is it possible to have refs be in POD structs?
-- Maybe I should have refs store a handle index, so that the handle can be pointed to something else? This repointing would suck though, since vector would have to be rewritten? I'm thinking a global `vector<void *> memory_handles`
-- Can every data structure be created using a circular buffer + references?
-- Make cimple logo a C formed by a few rects
-- Rethink what cimple is and isn't
-- Let python replace i32 with int?
-- Replace malloc() with allocate() and free() with deallocate()
-- Let allocate() and deallocate() just be in a real memory.cn module
-- Have dereference operator be on the right in cinimal, so -> isn't needed
-- Let declaration order be
-> * int foo
-instead of C's
-> int * foo
-- Do I want ! and ~ and - and + and casting to also be on the right?
-- Update basic test to use ptr and & and *, and change doubling() to add(a)
-- Use ++ in basic test for cn and cpp
-- Don't let open braces start on new line?
-- Use new basic test comparison screenshot in README
-- Don't have the variable name in the declaration line
+- Show an error if get_paw_count isn't explicitly listed as coming from dog.cn in the import line?
+- Do I want ! or ~ or - or + or casting to also be on the right side of a variable?
+- Is it possible to let cinimal use snake_case for everything, including file and folder names in import statements and includes? I think it might cause problems when the C file uses both an uppercase and lowercase variable at once.
