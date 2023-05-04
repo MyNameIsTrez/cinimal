@@ -2,13 +2,15 @@ struct Student
 	f64 age
 
 struct DequeStudent
-	Student[] data
+	arr Student data
 	i32 start_index
 	i32 size
+	i32 capacity
 
 i32 main()
-	# TODO: Make sure this is 0-initialized when transpiled to C++!
+	# TODO: Make sure deque is 0-initialized when transpiled to C!
 	DequeStudent deque
+	deque = DequeStudent::new()
 
 	Student alice
 	alice.age = 10
@@ -29,26 +31,46 @@ i32 main()
 	assert(DequeStudent::pop_front(deque).age == 9)
 	assert(DequeStudent::pop_back(deque).age == 11)
 
-void push_front(ref DequeStudent deque, Student student)
-	_try_grow(deque.data)
+DequeStudent new()
+	DequeStudent deque
+	deque.data = allocate(1, Student)
+	deque.capacity = 1
 
-void _try_grow(ref Student[] data)
-	if data.size() >= data.capacity()
-		# TODO: How can I can set values at arbitrary indices with data.at()? Prefill data with 0s?
-		# TODO: Maybe for the best if I just always use deq instead of vec?
-		# TODO: I could always later on replace deq with my own circular buffer.
-		# Student[] new_data
+	return deque
 
-		# while i < data.size()
-		# 	new_data.push(data[i])
-		# 	i += 1
+void push_front(ptr DequeStudent deque, Student student)
+	_try_grow(deque)
+	# TODO: Take wraparound into account
+	# deque*.start_index--
+	deque*.size++
 
-		# data.reserve(data.capacity() * 2)
+void _try_grow(ptr DequeStudent deque)
+	if deque*.size == deque*.capacity
+		deque*.capacity *= 2
 
-void push_back(ref DequeStudent deque, Student student)
+		arr Student new_data
+		new_data = allocate(deque*.capacity, Student)
 
-ref Student pop_front(ref DequeStudent deque)
+		# An example ring buffer is [B,C, ,A], where the start_index is 3
+		i32 trailing
+		trailing = deque*.capacity - deque*.start_index
 
-ref Student pop_back(ref DequeStudent deque)
+		# This copies the part that wrapped below index 0 to the other side
+		memcpy(new_data, deque*.data + deque*.start_index, trailing)
+		# This copies from index 0 on
+		memcpy(new_data + trailing, deque*.data, deque*.size - trailing)
 
-ref Student at(ref DequeStudent deque, index)
+		free(deque*.data)
+		deque*.data = new_data
+
+void push_back(ptr DequeStudent deque, Student student)
+	_try_grow(deque)
+	# TODO: Take wraparound into account
+	# deque*.data[deque*.start_index]
+	deque*.size++
+
+ptr Student pop_front(ptr DequeStudent deque)
+
+ptr Student pop_back(ptr DequeStudent deque)
+
+ptr Student at(ptr DequeStudent deque, index)
