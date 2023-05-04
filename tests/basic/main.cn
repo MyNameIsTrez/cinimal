@@ -3,7 +3,7 @@ void add(ptr i32 n)
 
 i32 main()
 	i32 i
-	assert(i == 0)
+	i = 0
 
 	while i < 3
 		if i == 0

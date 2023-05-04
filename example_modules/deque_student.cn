@@ -13,14 +13,17 @@ i32 main()
 	deque = DequeStudent::new()
 
 	Student alice
+	alice = 0
 	alice.age = 10
 	DequeStudent::push_back(deque, alice)
 
 	Student bob
+	bob = 0
 	bob.age = 11
 	DequeStudent::push_back(deque, bob)
 
 	Student charles
+	charles = 0
 	charles.age = 9
 	DequeStudent::push_front(deque, charles)
 
@@ -33,6 +36,7 @@ i32 main()
 
 DequeStudent new()
 	DequeStudent deque
+	deque = 0
 	deque.data = allocate(1, Student)
 	deque.capacity = 1
 

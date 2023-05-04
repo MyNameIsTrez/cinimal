@@ -31,7 +31,6 @@ void add(int32_t * n) {
 
 int32_t main(void) {
 	int32_t i = 0;
-	assert(i == 0);
 
 	while (i < 3) {
 		if (i == 0) {
