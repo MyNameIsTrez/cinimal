@@ -80,4 +80,9 @@ i32 _get_back_index(ptr DequeStudent deque)
 ptr Student back(ptr DequeStudent deque)
 	return deque*.data + _get_back_index(deque)
 
-ptr Student pop_back(ptr DequeStudent deque)
+void Student pop_front(ptr DequeStudent deque)
+	deque*.start_index++
+	deque*.size--
+
+void Student pop_back(ptr DequeStudent deque)
+	deque*.size--
