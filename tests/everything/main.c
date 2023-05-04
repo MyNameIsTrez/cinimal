@@ -64,9 +64,6 @@ int32_t main(void) {
 	assert(people[1].country != Country_ukraine);
 
 	free(people);
-	people = NULL;
-	assert(people == NULL);
-
 	people = allocate_one_person();
 	people[0].age = 42;
 	assert(people[0].age == 42);

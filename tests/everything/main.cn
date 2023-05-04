@@ -55,13 +55,12 @@ i32 main()
 	assert(people[1].country != Country::ukraine)
 
 	free(people)
-	assert(people == nullptr)
-
 	people = allocate_one_person()
 	people[0].age = 42
 	assert(people[0].age == 42)
 
 	free(people)
+	people = nullptr
 
 	arr[2] Person friends
 	friends = 0
