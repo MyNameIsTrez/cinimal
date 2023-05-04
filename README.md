@@ -1,3 +1,3 @@
 # C + minimal = cinimal
 
-![Screenshot of cinimal code on the left, and the C++ code it gets transpiled to on the right.](screenshots/basic.png)
+![Screenshot of original C code on the right, and the transpiled to cinimal code on the left.](screenshots/basic.png)
