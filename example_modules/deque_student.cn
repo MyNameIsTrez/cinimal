@@ -2,7 +2,7 @@ struct Student
 	f64 age
 
 struct DequeStudent
-	arr Student data
+	ptr Student data
 	i32 start_index
 	i32 size
 	i32 capacity
@@ -54,7 +54,7 @@ void _try_grow(ptr DequeStudent deque)
 	if deque*.size == deque*.capacity
 		deque*.capacity *= 2
 
-		arr Student new_data
+		ptr Student new_data
 		new_data = allocate(deque*.capacity, Student)
 
 		# An example ring buffer is [B,C, ,A], where the start_index is 3
