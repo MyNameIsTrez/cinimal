@@ -7,6 +7,63 @@ struct DequeStudent
 	i32 size
 	i32 capacity
 
+DequeStudent new()
+	DequeStudent deque
+	deque = 0
+	deque.data = calloc(1, Student)
+	deque.capacity = 1
+
+	return deque
+
+void _try_grow(ptr DequeStudent deque)
+	if deque*.size == deque*.capacity
+		deque*.capacity *= 2
+
+		ptr Student new_data
+		new_data = calloc(deque*.capacity, Student)
+
+		# An example ring buffer is [B,C, ,A], where the start_index is 3
+		i32 trailing
+		trailing = deque*.capacity - deque*.start_index
+
+		# This copies the part that wrapped below index 0 to the other side
+		memcpy(new_data, deque*.data + deque*.start_index, trailing)
+		# This copies from index 0 on
+		memcpy(new_data + trailing, deque*.data, deque*.size - trailing)
+
+		free(deque*.data)
+		deque*.data = new_data
+
+		deque*.start_index = 0
+
+void push_front(ptr DequeStudent deque, Student student)
+	_try_grow(deque)
+
+	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
+	deque*.data[deque*.start_index] = student
+
+	deque*.size++
+
+ptr Student back(ptr DequeStudent deque)
+	return deque*.data + _get_back_index(deque)
+
+void push_back(ptr DequeStudent deque, Student student)
+	_try_grow(deque)
+
+	deque*.data[_get_back_index(deque)] = student
+
+	deque*.size++
+
+i32 _get_back_index(ptr DequeStudent deque)
+	return (deque*.start_index + deque*.size) % deque*.capacity
+
+void Student pop_front(ptr DequeStudent deque)
+	deque*.start_index++
+	deque*.size--
+
+void Student pop_back(ptr DequeStudent deque)
+	deque*.size--
+
 i32 main()
 	DequeStudent deque
 	deque = DequeStudent::new()
@@ -32,60 +89,3 @@ i32 main()
 
 	assert(DequeStudent::pop_front(deque).age == 9)
 	assert(DequeStudent::pop_back(deque).age == 11)
-
-DequeStudent new()
-	DequeStudent deque
-	deque = 0
-	deque.data = calloc(1, Student)
-	deque.capacity = 1
-
-	return deque
-
-void push_front(ptr DequeStudent deque, Student student)
-	_try_grow(deque)
-
-	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
-	deque*.data[deque*.start_index] = student
-
-	deque*.size++
-
-void _try_grow(ptr DequeStudent deque)
-	if deque*.size == deque*.capacity
-		deque*.capacity *= 2
-
-		ptr Student new_data
-		new_data = calloc(deque*.capacity, Student)
-
-		# An example ring buffer is [B,C, ,A], where the start_index is 3
-		i32 trailing
-		trailing = deque*.capacity - deque*.start_index
-
-		# This copies the part that wrapped below index 0 to the other side
-		memcpy(new_data, deque*.data + deque*.start_index, trailing)
-		# This copies from index 0 on
-		memcpy(new_data + trailing, deque*.data, deque*.size - trailing)
-
-		free(deque*.data)
-		deque*.data = new_data
-
-		deque*.start_index = 0
-
-void push_back(ptr DequeStudent deque, Student student)
-	_try_grow(deque)
-
-	deque*.data[_get_back_index(deque)] = student
-
-	deque*.size++
-
-i32 _get_back_index(ptr DequeStudent deque)
-	return (deque*.start_index + deque*.size) % deque*.capacity
-
-ptr Student back(ptr DequeStudent deque)
-	return deque*.data + _get_back_index(deque)
-
-void Student pop_front(ptr DequeStudent deque)
-	deque*.start_index++
-	deque*.size--
-
-void Student pop_back(ptr DequeStudent deque)
-	deque*.size--
