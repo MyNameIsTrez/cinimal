@@ -76,6 +76,10 @@ int32_t main(void) {
 	free(people);
 	people = NULL;
 
+	Person[2] friends = {0};
+	friends[1].age = 13;
+	assert(friends[1].age == 13);
+
 	printf("All tests passed!\n");
 
 	return 0;

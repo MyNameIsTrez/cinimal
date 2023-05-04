@@ -63,4 +63,9 @@ i32 main()
 
 	free(people)
 
+	arr[2] Person friends
+	friends = 0
+	friends[1].age = 13
+	assert(friends[1].age == 13)
+
 	return 0
