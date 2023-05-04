@@ -16,8 +16,7 @@
 !tests/everything/main.cn
 !tests/everything/main.c
 
-# TODO: Create proper icon
-# !vsicons-custom-icons/file_type_cn.svg
+!vsicons-custom-icons/file_type_cn.svg
 
 !.gitignore
 
