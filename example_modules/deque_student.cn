@@ -24,9 +24,9 @@ i32 main()
 	charles.age = 9
 	DequeStudent::push_front(deque, charles)
 
-	assert(DequeStudent::at(deque, 0).age == 9)
-	assert(DequeStudent::at(deque, 1).age == 10)
-	assert(DequeStudent::at(deque, 2).age == 11)
+	assert(deque.data[0].age == 9)
+	assert(deque.data[1].age == 10)
+	assert(deque.data[2].age == 11)
 
 	assert(DequeStudent::pop_front(deque).age == 9)
 	assert(DequeStudent::pop_back(deque).age == 11)
@@ -72,5 +72,3 @@ void push_back(ptr DequeStudent deque, Student student)
 ptr Student pop_front(ptr DequeStudent deque)
 
 ptr Student pop_back(ptr DequeStudent deque)
-
-ptr Student at(ptr DequeStudent deque, index)
