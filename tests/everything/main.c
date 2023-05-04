@@ -21,6 +21,10 @@ struct Person {
 	enum Country country;
 };
 
+void *allocate_one_person(void) {
+    return calloc(1, sizeof(struct Person));
+}
+
 void add(int32_t * n) {
     (*n)++;
 }
@@ -66,7 +70,7 @@ int32_t main(void) {
 	people = NULL;
 	assert(people == NULL);
 
-	people = calloc(1, sizeof(struct Person));
+	people = allocate_one_person();
 	people[0].age = 42;
 	assert(people[0].age == 42);
 

@@ -135,5 +135,4 @@ instead of C's
 - Use ++ in basic test for cn and cpp
 - Don't let open braces start on new line?
 - Use new basic test comparison screenshot in README
-- Rename "void *" to "ptr thing"
 - Don't have the variable name in the declaration line
