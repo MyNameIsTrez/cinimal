@@ -37,7 +37,9 @@ int32_t main(void) {
 	while (i < 3) {
 		if (i == 0) {
 			printf("foo\n");
-		} else printf("bar\n");
+		} else if (i == 1) {
+			printf("bar\n");
+		} else printf("baz\n");
 		i++;
 	}
 

@@ -29,8 +29,10 @@ i32 main()
 	while i < 3
 		if i == 0
 			print("foo")
-		else
+		elif (i == 1)
 			print("bar")
+		else
+			print("baz")
 		i++
 
 	assert(i == 3)
