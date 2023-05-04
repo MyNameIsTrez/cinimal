@@ -14,7 +14,7 @@ struct Person
 	Country country
 
 ptr thing allocate_one_person()
-	return allocate(1, Person)
+	return calloc(1, Person)
 
 void add(ptr i32 n)
 	n*++
@@ -40,7 +40,7 @@ i32 main()
 	assert(Country::mexico == 1)
 
 	ptr Person people
-	people = allocate(2, Person)
+	people = calloc(2, Person)
 
 	ptr Person frank
 	frank = &people[0]

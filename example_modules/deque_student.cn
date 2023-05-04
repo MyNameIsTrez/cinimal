@@ -37,7 +37,7 @@ i32 main()
 DequeStudent new()
 	DequeStudent deque
 	deque = 0
-	deque.data = allocate(1, Student)
+	deque.data = calloc(1, Student)
 	deque.capacity = 1
 
 	return deque
@@ -55,7 +55,7 @@ void _try_grow(ptr DequeStudent deque)
 		deque*.capacity *= 2
 
 		ptr Student new_data
-		new_data = allocate(deque*.capacity, Student)
+		new_data = calloc(deque*.capacity, Student)
 
 		# An example ring buffer is [B,C, ,A], where the start_index is 3
 		i32 trailing
