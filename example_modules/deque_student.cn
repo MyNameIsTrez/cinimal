@@ -40,8 +40,10 @@ DequeStudent new()
 
 void push_front(ptr DequeStudent deque, Student student)
 	_try_grow(deque)
-	# TODO: Take wraparound into account
-	# deque*.start_index--
+
+	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
+	deque*.data[deque*.start_index] = student
+
 	deque*.size++
 
 void _try_grow(ptr DequeStudent deque)
@@ -63,10 +65,15 @@ void _try_grow(ptr DequeStudent deque)
 		free(deque*.data)
 		deque*.data = new_data
 
+		deque*.start_index = 0
+
 void push_back(ptr DequeStudent deque, Student student)
 	_try_grow(deque)
-	# TODO: Take wraparound into account
-	# deque*.data[deque*.start_index]
+
+	i32 index
+	index = (deque*.start_index + deque*.size) % deque*.capacity
+	deque*.data[index] = student
+
 	deque*.size++
 
 ptr Student pop_front(ptr DequeStudent deque)
