@@ -30,6 +30,8 @@ void add(int32_t * n) {
 }
 
 int32_t main(void) {
+	/* example
+	multiline comment */
 	int32_t i = 0;
 
 	while (i < 3) {

@@ -20,6 +20,8 @@ void add(ptr i32 n)
 	n*++
 
 i32 main()
+	# example
+	# multiline comment
 	i32 i
 	i = 0
 
