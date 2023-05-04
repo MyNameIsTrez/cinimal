@@ -44,9 +44,9 @@ i32 main()
 
 	ptr Person frank
 	frank = &people[0]
-	frank.age = 24 * 1.5
+	frank*.age = 24 * 1.5
 	assert(people[0].age == 36)
-	frank.names.last_name = "frank"
+	frank*.names.last_name = "frank"
 	assert(people[0].names.last_name == "frank")
 
 	assert(people[1].names.last_name == NULL);
