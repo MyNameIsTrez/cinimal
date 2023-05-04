@@ -8,7 +8,6 @@ struct DequeStudent
 	i32 capacity
 
 i32 main()
-	# TODO: Check deque being 0-initialized when transpiled to C!
 	DequeStudent deque
 	deque = DequeStudent::new()
 
