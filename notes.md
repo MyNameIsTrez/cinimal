@@ -22,8 +22,7 @@
 - Add "everything" test screenshot to GH readme
 - Add gif to the extension page showcasing how to use cinimal
 - Enums, structs and file namespaces shouldn't have to be capitalized
-- Already make all extension settings toggleable
-- Check if 640x640 icon is now being used
+- Make all future extension settings already toggleable
 
 # Tests to add
 - Add test showcasing only one instruction per line, so no `while (i += 1)`
