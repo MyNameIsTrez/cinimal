@@ -3,7 +3,7 @@
   "publisher": "MyNameIsTrez",
   "displayName": "cinimal",
   "description": "Edit C files through the lens of Python-like syntax.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": {
     "url": "https://github.com/MyNameIsTrez/cinimal"
   },
@@ -37,7 +37,7 @@
     "configuration": [
       {
         "title": "cinimal",
-        "properties":{
+        "properties": {
           "cinimal.pythonIndentation": {
             "type": "boolean",
             "scope": "resource",
