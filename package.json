@@ -36,8 +36,15 @@
     ],
     "configuration": [
       {
-        "title": "",
-        "properties": {}
+        "title": "cinimal",
+        "properties":{
+          "cinimal.pythonIndentation": {
+            "type": "boolean",
+            "scope": "resource",
+            "default": true,
+            "description": "Use Python-like tab indentation."
+          }
+        }
       }
     ]
   }
