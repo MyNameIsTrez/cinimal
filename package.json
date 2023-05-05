@@ -2,7 +2,7 @@
   "name": "cinimal",
   "publisher": "MyNameIsTrez",
   "displayName": "cinimal",
-  "description": "cinimal",
+  "description": "Edit C files through the lens of Python-like syntax.",
   "version": "0.1.0",
   "repository": {
     "url": "https://github.com/MyNameIsTrez/cinimal"
