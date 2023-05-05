@@ -2,16 +2,14 @@
 
 Edit C files through the lens of Python-like syntax.
 
+By default, all the features are turned on.
+
+You are encouraged to toggle the features off in the extension's settings that you don't like.
+
+If you turn all the features off, cinimal will be identical to C.
+
 ![Screenshot of original C code on the right, and the transpiled to cinimal code on the left.](screenshots/basic.png)
 
 ## Features
-
-Currently none; this is still a work in progress.
-
-## Extension Settings
-
-This extension contributes the following settings:
-
-* `cinimal.enable`: Enable/disable this extension.
 
 ## Known Issues
