@@ -42,9 +42,21 @@
         "properties": {
           "cinimal.pythonIndentation": {
             "type": "boolean",
-            "scope": "resource",
+            "markdownDescription": "Use Python-like tab indentation, instead of `{` `}` braces",
             "default": true,
-            "description": "Use Python-like tab indentation."
+            "order": 0
+          },
+          "cinimal.dereferenceOnRight": {
+            "type": "boolean",
+            "markdownDescription": "Have dereferencing happen on the right side of a pointer, so `*ptr` will be translated to `ptr*`",
+            "default": true,
+            "order": 1
+          },
+          "cinimal.removeArrowOperator": {
+            "type": "boolean",
+            "markdownDescription": "Turn `->` into the equivalent `*.`\n\nThis setting has no effect if the `#cinimal.dereferenceOnRight#` setting is turned off",
+            "default": true,
+            "order": 2
           }
         }
       }
