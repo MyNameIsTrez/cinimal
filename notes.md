@@ -19,14 +19,20 @@
 - Sort all C imports in alphabetical order, and show an error if no function was included from it
 
 # TODO:
+- Add "everything" test screenshot to GH readme
+- Make placeholder cinimal VS Code extension before someone else grabs it
+- Add gif to the extension page showcasing how to use cinimal
+- Enums, structs and file namespaces shouldn't have to be capitalized
+- Already make all extension settings toggleable
+
+# Tests to add
 - Add test showcasing only one instruction per line, so no `while (i += 1)`
 - Add test calling a function from a lookup table of functions
-- Add "everything" test screenshot to GH readme
 - Add test for multidimensional arrays on the heap and stack
 - Add test for function forward declaration
 - Add test for struct forward declaration
 - Add test for passing function as arg
-- Add union test
+- Add test showcasing union
 - Add test showcasing one ptr declaration per line declaration the * of the declaration so it's on both lines
 - Add test showcasing const pointers need to be declared and assigned at once
 - Add test showcasing printf("%d\n", 42) being turned into print("%d", 42)
@@ -36,9 +42,14 @@
 - Add test showcasing no direct nesting of a struct definition inside of another struct definition; you have to define the inner struct before it
 - Add test showcasing no tabs anywhere, apart from for indentation, and also show unless it's in a comment
 - Add test shocasing no aligning lines using spaces; show minimum number of required spaces only, and also show unless it's inside a comment
+- Add test showcasing "i++; j++"
 
 # Questions
 - Not sure if there's anything better f64 can be translated to than a hardcoded double?
 - Show an error if get_paw_count isn't explicitly listed as coming from dog.cn in the import line?
 - Do I want ! or ~ or - or + or casting to also be on the right side of a variable?
 - Is it possible to let cinimal use snake_case for everything, including file and folder names in import statements and includes? I think it might cause problems when the C file uses both an uppercase and lowercase variable at once.
+- Do I want to keep = {0} being translated to = 0?
+
+# Turn these into settings
+- Transpile printf("\n") to print()
