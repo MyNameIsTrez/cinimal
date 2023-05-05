@@ -42,21 +42,51 @@
         "properties": {
           "cinimal.pythonIndentation": {
             "type": "boolean",
-            "markdownDescription": "Use Python-like tab indentation, instead of `{` `}` braces",
+            "markdownDescription": "Turn C-style `{` `}` indentation into Python-like tab indentation",
             "default": true,
             "order": 0
           },
-          "cinimal.dereferenceOnRight": {
+          "cinimal.removeParentheses": {
             "type": "boolean",
-            "markdownDescription": "Have dereferencing happen on the right side of a pointer, so `*ptr` will be translated to `ptr*`",
+            "markdownDescription": "Turn `while (i < 3)` into `while i < 3`\n\nThe same goes for `for`, `if`, `elif`, and `return`",
             "default": true,
             "order": 1
           },
-          "cinimal.removeArrowOperator": {
+          "cinimal.printfToPrint": {
             "type": "boolean",
-            "markdownDescription": "Turn `->` into the equivalent `*.`\n\nThis setting has no effect if the `#cinimal.dereferenceOnRight#` setting is turned off",
+            "markdownDescription": "Turn `printf(\"%d\\n\", 42)` into `print(\"%d\", 42)`",
             "default": true,
             "order": 2
+          },
+          "cinimal.dereferenceOnRight": {
+            "type": "boolean",
+            "markdownDescription": "Turn `(*nbr_ptr)++` into `nbr_ptr*++`",
+            "default": true,
+            "order": 3
+          },
+          "cinimal.noArrowOperator": {
+            "type": "boolean",
+            "markdownDescription": "Turn `person->age` into `person*.age`\n\nThis setting has no effect if the `#cinimal.dereferenceOnRight#` setting is turned off",
+            "default": true,
+            "order": 4
+          },
+          "cinimal.intToI32": {
+            "type": "boolean",
+            "markdownDescription": "Turn `int n;` into `i32 n` on systems where an `int` is 32 bits.",
+            "default": true,
+            "order": 5
+          },
+          "cinimal.separateDeclarationAndAssignment": {
+            "type": "boolean",
+            "markdownDescription": "Turn `int n = 42;` into `int n` with `n = 42` on the next line",
+            "default": true,
+            "order": 6
+          },
+          "cinimal.replacePointerDeclarationAsteriskWithPtr": {
+            "type": "boolean",
+            "markdownDescription": "Turn `int const * const n;` into `const ptr const int n`",
+            "default": true,
+            "order": 7
           }
         }
       }
