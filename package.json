@@ -3,8 +3,10 @@
   "publisher": "MyNameIsTrez",
   "displayName": "cinimal",
   "description": "cinimal",
-  "version": "0.0.1",
-  "repository": {"url": "https://github.com/MyNameIsTrez/cinimal"},
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/MyNameIsTrez/cinimal"
+  },
   "icon": "vsicons-custom-icons/file_type_cn.png",
   "engines": {
     "vscode": "^1.77.0"
@@ -13,18 +15,26 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "cinimal",
-      "aliases": ["cinimal"],
-      "extensions": [".cn"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "cinimal",
-      "scopeName": "source.cn",
-      "path": "./syntaxes/cinimal.tmLanguage.json"
-    }],
-    "configuration":[
+    "languages": [
+      {
+        "id": "cinimal",
+        "aliases": [
+          "cinimal"
+        ],
+        "extensions": [
+          ".cn"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cinimal",
+        "scopeName": "source.cn",
+        "path": "./syntaxes/cinimal.tmLanguage.json"
+      }
+    ],
+    "configuration": [
       {
         "title": "",
         "properties": {}
