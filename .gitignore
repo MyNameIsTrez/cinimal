@@ -1,33 +1,29 @@
 *
 !*/
 
-!.vscode/launch.json
+!.vscode/*.json
 
-!screenshots/basic_c.png
-!screenshots/basic_cn.png
-!screenshots/basic.png
+!screenshots/*.png
+
+!src/**/*.ts
 
 !syntaxes/cinimal.tmLanguage.json
 
-!tests/basic/main.cn
-!tests/basic/main.c
+!tests/**/*.c
+!tests/**/*.cn
+!tests/**/*.h
 
-!tests/deque_student/deque_student.cn
-
-!tests/everything/animals/dog.cn
-!tests/everything/animals/dog.c
-!tests/everything/animals/dog.h
-!tests/everything/main.cn
-!tests/everything/main.c
-
+!vsicons-custom-icons/file_type_cn.png
 !vsicons-custom-icons/file_type_cn.svg
 
+!.eslintrc.json
 !.gitignore
 !.vscodeignore
-
 !CHANGELOG.md
 !language-configuration.json
 !LICENSE.txt
 !notes.md
+!package-lock.json
 !package.json
 !README.md
+!tsconfig.json
