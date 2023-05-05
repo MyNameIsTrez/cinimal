@@ -1,9 +1,13 @@
 *
 !*/
 
+!.vscode/launch.json
+
 !screenshots/basic_c.png
 !screenshots/basic_cn.png
 !screenshots/basic.png
+
+!syntaxes/cinimal.tmLanguage.json
 
 !tests/basic/main.cn
 !tests/basic/main.c
@@ -19,6 +23,10 @@
 !vsicons-custom-icons/file_type_cn.svg
 
 !.gitignore
+!.vscodeignore
 
+!CHANGELOG.md
+!language-configuration.json
 !notes.md
+!package.json
 !README.md

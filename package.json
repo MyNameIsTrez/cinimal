@@ -1,0 +1,31 @@
+{
+  "name": "cinimal",
+  "displayName": "cinimal",
+  "description": "cinimal",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "cinimal",
+      "aliases": ["cinimal"],
+      "extensions": [".cn"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "cinimal",
+      "scopeName": "source.cn",
+      "path": "./syntaxes/cinimal.tmLanguage.json"
+    }],
+    "configuration":[
+      {
+        "title": "",
+        "properties": {}
+      }
+    ]
+  }
+}
