@@ -16,14 +16,14 @@
 !vsicons-custom-icons/file_type_cn.png
 !vsicons-custom-icons/file_type_cn.svg
 
-!.eslintrc.json
-!.gitignore
-!.vscodeignore
-!CHANGELOG.md
-!language-configuration.json
-!LICENSE.txt
-!notes.md
-!package-lock.json
-!package.json
-!README.md
-!tsconfig.json
+!./.eslintrc.json
+!./.gitignore
+!./.vscodeignore
+!./CHANGELOG.md
+!./language-configuration.json
+!./LICENSE.txt
+!./notes.md
+!./package-lock.json
+!./package.json
+!./README.md
+!./tsconfig.json
