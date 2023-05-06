@@ -1,5 +1,7 @@
 # C + minimal = cinimal
 
+***NOTE: This extension currently do anything useful yet!***
+
 Edit C files through the lens of Python-like syntax.
 
 By default, all the features are turned on.
