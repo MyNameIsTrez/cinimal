@@ -46,47 +46,83 @@
             "default": true,
             "order": 0
           },
-          "cinimal.removeParentheses": {
+          "cinimal.removeTrailingSemicolons": {
             "type": "boolean",
-            "markdownDescription": "Turn `while (i < 3)` into `while i < 3`\n\nThe same goes for `for`, `if`, `elif`, and `return`",
+            "markdownDescription": "Turn `n += 2; N *= 3;` into `n += 2; n *= 3`",
             "default": true,
             "order": 1
           },
-          "cinimal.printfToPrint": {
+          "cinimal.oneInstructionPerLine": {
             "type": "boolean",
-            "markdownDescription": "Turn `printf(\"%d\\n\", 42)` into `print(\"%d\", 42)`",
+            "markdownDescription": "Turn `n += 2; n *= 3;` into `n += 2` with `n *= 3` on the next line",
             "default": true,
             "order": 2
           },
-          "cinimal.dereferenceOnRight": {
+          "cinimal.removeParentheses": {
             "type": "boolean",
-            "markdownDescription": "Turn `(*nbr_ptr)++` into `nbr_ptr*++`",
+            "markdownDescription": "Turn `while (i < 3)` into `while i < 3`\n\nThe same goes for `for`, `if`, and `elif`",
             "default": true,
             "order": 3
           },
-          "cinimal.noArrowOperator": {
+          "cinimal.removeRedundantReturnParentheses": {
             "type": "boolean",
-            "markdownDescription": "Turn `person->age` into `person*.age`\n\nThis setting has no effect if the `#cinimal.dereferenceOnRight#` setting is turned off",
+            "markdownDescription": "Turn `return (i);` into `return i`\n\nThis setting is specifically for schools from the 42 Network, where these parentheses are mandatory",
             "default": true,
             "order": 4
           },
-          "cinimal.intToI32": {
+          "cinimal.hashtagComment": {
             "type": "boolean",
-            "markdownDescription": "Turn `int n;` into `i32 n` on systems where an `int` is 32 bits.",
+            "markdownDescription": "Turn `// foo` into `# foo`, and turn `/* bar` with `baz */` on the next line into `# bar` with `# baz` on the next line",
             "default": true,
             "order": 5
+          },
+          "cinimal.printfToPrint": {
+            "type": "boolean",
+            "markdownDescription": "Turn `printf(\"%d\\n\", 42);` into `print(\"%d\", 42)`",
+            "default": true,
+            "order": 6
+          },
+          "cinimal.dereferenceOnRight": {
+            "type": "boolean",
+            "markdownDescription": "Turn `(*nbr_ptr)++;` into `nbr_ptr*++`",
+            "default": true,
+            "order": 7
+          },
+          "cinimal.noArrowOperator": {
+            "type": "boolean",
+            "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42`\n\nThis setting has no effect if the `#cinimal.dereferenceOnRight#` setting is turned off",
+            "default": true,
+            "order": 8
+          },
+          "cinimal.explicitTypeSize": {
+            "type": "boolean",
+            "markdownDescription": "Turn `int n;` into `i32 n` on systems where an `int` is 32 bits.\n\n`float` is always 32 bits, but is also turned into `f32`",
+            "default": true,
+            "order": 9
           },
           "cinimal.separateDeclarationAndAssignment": {
             "type": "boolean",
             "markdownDescription": "Turn `int n = 42;` into `int n` with `n = 42` on the next line",
             "default": true,
-            "order": 6
+            "order": 10
           },
           "cinimal.replacePointerDeclarationAsteriskWithPtr": {
             "type": "boolean",
-            "markdownDescription": "Turn `int const * const n;` into `const ptr const int n`",
+            "markdownDescription": "Turn `int *n;` into `int ptr n`",
             "default": true,
-            "order": 7
+            "order": 11
+          },
+          "cinimal.leftToRightTypeDeclaration": {
+            "type": "boolean",
+            "markdownDescription": "Turn `int const * const * * n;` into `ptr ptr const ptr const int n`",
+            "default": true,
+            "order": 12
+          },
+          "cinimal.charPtrToStr": {
+            "type": "boolean",
+            "markdownDescription": "Turn `char *message;` into `str message`\n\nIn practice a `char *` is almost always a string, but this won't always be correct, for example with a pointer to a single character",
+            "default": true,
+            "order": 13
           }
         }
       }
