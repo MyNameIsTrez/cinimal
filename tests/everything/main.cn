@@ -1,8 +1,8 @@
 import { bark, get_paw_count } from animals/dog.cn
 
 struct Names
-	str first_name
-	str last_name
+	char *first_name
+	char *last_name
 
 enum Country
 	ukraine

@@ -117,12 +117,6 @@
             "markdownDescription": "Turn `int const * const * * n;` into `ptr ptr const ptr const int n`",
             "default": true,
             "order": 12
-          },
-          "cinimal.charPtrToStr": {
-            "type": "boolean",
-            "markdownDescription": "Turn `char *message;` into `str message`\n\nIn practice a `char *` is almost always a string, but this won't always be correct, for example with a pointer to a single character",
-            "default": true,
-            "order": 13
           }
         }
       }

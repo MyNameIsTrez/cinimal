@@ -126,7 +126,7 @@
 			"patterns": [
 				{
 					"name": "storage.type",
-					"match": "\\b(str|i32|f64|void|ptr|arr|thing|struct|enum)\\b"
+					"match": "\\b(i32|f64|void|ptr|arr|thing|struct|enum)\\b"
 				}
 			]
 		},
@@ -169,7 +169,7 @@
 			"patterns": [
 				{
 					"name": "constant.numeric",
-					"match": "\\t((?!else|str|i32|f64|void|ptr|arr|thing|struct|enum)\\w)*\\n"
+					"match": "\\t((?!else|i32|f64|void|ptr|arr|thing|struct|enum)\\w)*\\n"
 				}
 			]
 		},
