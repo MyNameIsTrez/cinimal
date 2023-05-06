@@ -1,6 +1,6 @@
 # C + minimal = cinimal
 
-***NOTE: This extension currently do anything useful yet!***
+***NOTE: This extension doesn't do anything useful yet!***
 
 Edit C files through the lens of Python-like syntax.
 
