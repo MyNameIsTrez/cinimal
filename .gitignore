@@ -20,6 +20,8 @@
 !./.gitignore
 !./.vscodeignore
 !./CHANGELOG.md
+# Genuinely no clue why putting `./` in front of `how_to_fix_errors.md` didn't make it unignored:
+!how_to_fix_errors.md
 !./language-configuration.json
 !./LICENSE.txt
 !./notes.md
