@@ -5,24 +5,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Names {
+struct names {
 	char *first_name;
 	char *last_name;
 };
 
-enum Country {
-	Country_ukraine,
-	Country_mexico,
+enum country {
+	country_ukraine,
+	country_mexico,
 };
 
-struct Person {
+struct person {
 	double age;
-	struct Names names;
-	enum Country country;
+	struct names names;
+	enum country country;
 };
 
 void *allocate_one_person(void) {
-    return calloc(1, sizeof(struct Person));
+    return calloc(1, sizeof(struct person));
 }
 
 void add(int32_t * const n) {
@@ -50,11 +50,11 @@ int32_t main(void) {
 	bark();
 	assert(get_paw_count() == 4);
 
-	assert(Country_mexico == 1);
+	assert(country_mexico == 1);
 
-	struct Person * const people = calloc(2, sizeof(struct Person));
+	struct person * people = calloc(2, sizeof(struct person));
 
-    struct Person * const frank = &people[0];
+    struct person * const frank = &people[0];
 	frank->age = 24 * 1.5;
 	assert(people[0].age == 36);
 	frank->names.last_name = "frank";
@@ -62,8 +62,8 @@ int32_t main(void) {
 
 	assert(people[1].names.last_name == NULL);
 
-	people[1].country = Country_mexico;
-	assert(people[1].country != Country_ukraine);
+	people[1].country = country_mexico;
+	assert(people[1].country != country_ukraine);
 
 	free(people);
 	people = allocate_one_person();

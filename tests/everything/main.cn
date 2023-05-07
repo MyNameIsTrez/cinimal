@@ -1,20 +1,20 @@
 import { bark, get_paw_count } from animals/dog.cn
 
-struct Names
+struct names
 	char *first_name
 	char *last_name
 
-enum Country
+enum country
 	ukraine
 	mexico
 
-struct Person
+struct person
 	f64 age
-	Names names
-	Country country
+	names names
+	country country
 
 ptr thing allocate_one_person()
-	return calloc(1, Person)
+	return calloc(1, person)
 
 void add(ptr mut i32 n)
 	n*++
@@ -39,25 +39,25 @@ i32 main()
 	add(&i)
 	assert(i == 4)
 
-	Dog::bark()
-	assert(Dog::get_paw_count() == 4)
+	dog::bark()
+	assert(dog::get_paw_count() == 4)
 
-	assert(Country::mexico == 1)
+	assert(country::mexico == 1)
 
-	ptr mut Person people
-	people = calloc(2, Person)
+	mut ptr mut person people
+	people = calloc(2, person)
 
-	ptr mut Person frank
+	ptr mut person frank
 	frank = &people[0]
 	frank*.age = 24 * 1.5
 	assert(people[0].age == 36)
 	frank*.names.last_name = "frank"
 	assert(people[0].names.last_name == "frank")
 
-	assert(people[1].names.last_name == NULL);
+	assert(people[1].names.last_name == nullptr);
 
-	people[1].country = Country::mexico
-	assert(people[1].country != Country::ukraine)
+	people[1].country = country::mexico
+	assert(people[1].country != country::ukraine)
 
 	free(people)
 	people = allocate_one_person()
