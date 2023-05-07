@@ -1,8 +1,8 @@
-void add(ptr i32 n)
+void add(ptr mut i32 n)
 	n*++
 
 i32 main()
-	i32 i
+	mut i32 i
 	i = 0
 
 	while i < 3

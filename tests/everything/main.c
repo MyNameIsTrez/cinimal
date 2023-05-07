@@ -25,7 +25,7 @@ void *allocate_one_person(void) {
     return calloc(1, sizeof(struct Person));
 }
 
-void add(int32_t * n) {
+void add(int32_t * const n) {
     (*n)++;
 }
 
@@ -52,11 +52,9 @@ int32_t main(void) {
 
 	assert(Country_mexico == 1);
 
-	struct Person *people;
-	people = calloc(2, sizeof(struct Person));
+	struct Person * const people = calloc(2, sizeof(struct Person));
 
-    struct Person *frank;
-    frank = &people[0];
+    struct Person * const frank = &people[0];
 	frank->age = 24 * 1.5;
 	assert(people[0].age == 36);
 	frank->names.last_name = "frank";

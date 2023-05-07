@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void add(int32_t * n) {
+void add(int32_t * const n) {
     (*n)++;
 }
 

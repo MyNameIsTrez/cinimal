@@ -8,22 +8,22 @@ struct DequeStudent
 	i32 capacity
 
 DequeStudent new()
-	DequeStudent deque
+	mut DequeStudent deque
 	deque = 0
 	deque.data = calloc(1, Student)
 	deque.capacity = 1
 
 	return deque
 
-void _try_grow(ptr DequeStudent deque)
+void _try_grow(ptr mut DequeStudent deque)
 	if deque*.size == deque*.capacity
 		deque*.capacity *= 2
 
-		ptr Student new_data
+		ptr mut Student new_data
 		new_data = calloc(deque*.capacity, Student)
 
 		# An example ring buffer is [B,C, ,A], where the start_index is 3
-		i32 trailing
+		mut i32 trailing
 		trailing = deque*.capacity - deque*.start_index
 
 		# This copies the part that wrapped below index 0 to the other side
@@ -36,7 +36,7 @@ void _try_grow(ptr DequeStudent deque)
 
 		deque*.start_index = 0
 
-void push_front(ptr DequeStudent deque, Student student)
+void push_front(ptr mut DequeStudent deque, Student student)
 	_try_grow(deque)
 
 	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
@@ -44,48 +44,50 @@ void push_front(ptr DequeStudent deque, Student student)
 
 	deque*.size++
 
-ptr Student back(ptr DequeStudent deque)
+ptr Student back(ptr mut DequeStudent deque)
 	return deque*.data + _get_back_index(deque)
 
-void push_back(ptr DequeStudent deque, Student student)
+void push_back(ptr mut DequeStudent deque, Student student)
 	_try_grow(deque)
 
 	deque*.data[_get_back_index(deque)] = student
 
 	deque*.size++
 
-i32 _get_back_index(ptr DequeStudent deque)
+i32 _get_back_index(ptr mut DequeStudent deque)
 	return (deque*.start_index + deque*.size) % deque*.capacity
 
-void Student pop_front(ptr DequeStudent deque)
+void Student pop_front(ptr mut DequeStudent deque)
 	deque*.start_index++
 	deque*.size--
 
-void Student pop_back(ptr DequeStudent deque)
+void Student pop_back(ptr mut DequeStudent deque)
 	deque*.size--
 
 i32 main()
-	DequeStudent deque
+	mut DequeStudent deque
 	deque = DequeStudent::new()
 
-	Student alice
+	mut Student alice
 	alice = 0
 	alice.age = 10
-	DequeStudent::push_back(deque, alice)
+	DequeStudent::push_back(&deque, alice)
 
-	Student bob
+	mut Student bob
 	bob = 0
 	bob.age = 11
-	DequeStudent::push_back(deque, bob)
+	DequeStudent::push_back(&deque, bob)
 
-	Student charles
+	mut Student charles
 	charles = 0
 	charles.age = 9
-	DequeStudent::push_front(deque, charles)
+	DequeStudent::push_front(&deque, charles)
 
 	assert(deque.data[0].age == 9)
 	assert(deque.data[1].age == 10)
 	assert(deque.data[2].age == 11)
 
-	assert(DequeStudent::pop_front(deque).age == 9)
-	assert(DequeStudent::pop_back(deque).age == 11)
+	assert(DequeStudent::pop_front(&deque).age == 9)
+	assert(DequeStudent::pop_back(&deque).age == 11)
+
+	return 0

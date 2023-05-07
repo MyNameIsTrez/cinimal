@@ -16,14 +16,14 @@ struct Person
 ptr thing allocate_one_person()
 	return calloc(1, Person)
 
-void add(ptr i32 n)
+void add(ptr mut i32 n)
 	n*++
 
 i32 main()
 	# single line comment
 	# multi
 	# line comment
-	i32 i
+	mut i32 i
 	i = 0
 
 	while i < 3
@@ -44,10 +44,10 @@ i32 main()
 
 	assert(Country::mexico == 1)
 
-	ptr Person people
+	ptr mut Person people
 	people = calloc(2, Person)
 
-	ptr Person frank
+	ptr mut Person frank
 	frank = &people[0]
 	frank*.age = 24 * 1.5
 	assert(people[0].age == 36)
@@ -67,7 +67,7 @@ i32 main()
 	free(people)
 	people = nullptr
 
-	arr[2] Person friends
+	arr[2] mut Person friends
 	friends = 0
 	friends[1].age = 13
 	assert(friends[1].age == 13)

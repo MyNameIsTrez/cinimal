@@ -117,6 +117,13 @@
             "markdownDescription": "Turn `int const * const * * n;` into `ptr ptr const ptr const int n`",
             "default": true,
             "order": 12
+          },
+          "cinimal.constByDefaultMutOtherwise": {
+            "type": "boolean",
+            "markdownDescription": "Turn `void foo(const int a, int b)` into `void foo(int a, mut int b)`",
+            "default": true,
+            "order": 13
+          },
           }
         }
       }
