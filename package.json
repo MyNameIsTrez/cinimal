@@ -106,7 +106,7 @@
             "default": true,
             "order": 10
           },
-          "cinimal.replacePointerDeclarationAsteriskWithPtr": {
+          "cinimal.ptrKeyword": {
             "type": "boolean",
             "markdownDescription": "Turn `int *n;` into `int ptr n`",
             "default": true,
