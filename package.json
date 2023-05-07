@@ -130,6 +130,10 @@
     ],
     "commands": [
       {
+        "command": "cinimal.toggle",
+        "title": "Toggle cinimal on/off"
+      },
+      {
         "command": "cinimal.helloWorld",
         "title": "Hello World"
       }
