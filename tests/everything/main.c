@@ -73,9 +73,9 @@ int32_t main(void) {
 	free(people);
 	people = NULL;
 
-	Person[2] friends = {0};
-	friends[1].age = 13;
-	assert(friends[1].age == 13);
+	struct person friends[2][3] = {0};
+	friends[0][2].age = 13;
+	assert(friends[0][2].age == 13);
 
 	printf("All tests passed!\n");
 
