@@ -124,6 +124,12 @@
             "default": true,
             "order": 13
           },
+          "cinimal.namespacedEnums": {
+            "type": "boolean",
+            "markdownDescription": "Turn `type == cat` into `type == animal::cat`, given `enum animal { cat, dog };`",
+            "default": true,
+            "order": 14
+          },
           }
         }
       }
