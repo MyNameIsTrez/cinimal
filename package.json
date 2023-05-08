@@ -130,41 +130,47 @@
             "default": true,
             "order": 14
           },
-          "cinimal.staticByDefaultPubOtherwise": {
+          "cinimal.typeAfterFunction": {
             "type": "boolean",
-            "markdownDescription": "Turn `static void foo(void)` into `void foo(void)` and `void bar(void)` into `pub void bar(void)`",
+            "markdownDescription": "Turn `void foo(int n)` into `foo(int n): void`",
             "default": true,
             "order": 15
+          },
+          "cinimal.publicAndPrivate": {
+            "type": "boolean",
+            "markdownDescription": "Turn `void foo(void)` into `pub void foo(void)` and `static void bar(void)` into `pri void bar(void)`",
+            "default": true,
+            "order": 16
           },
           "cinimal.constByDefaultMutOtherwise": {
             "type": "boolean",
             "markdownDescription": "Turn `void foo(const int a, int b)` into `void foo(int a, mut int b)`",
             "default": true,
-            "order": 16
+            "order": 17
           },
           "cinimal.namespacedEnums": {
             "type": "boolean",
             "markdownDescription": "Turn `type == cat` into `type == animal::cat`, given `enum animal { cat, dog };`",
             "default": true,
-            "order": 17
+            "order": 18
           },
           "cinimal.globalNamespace": {
             "type": "boolean",
             "markdownDescription": "Turn `printf(\"%d\\n\", foo);` into `printf(\"%d\\n\", global::foo);`, given global `int foo;`",
             "default": true,
-            "order": 18
+            "order": 19
           },
           "cinimal.nullptr": {
             "type": "boolean",
             "markdownDescription": "Turn `if (foo == NULL)` into `if (foo == nullptr)`",
             "default": true,
-            "order": 19
+            "order": 20
           },
           "cinimal.imports": {
             "type": "boolean",
             "markdownDescription": "Turn `#include <assert.h>` into `import { assert } from <assert.h>`",
             "default": true,
-            "order": 20
+            "order": 21
           }
         }
       }

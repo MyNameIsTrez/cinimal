@@ -1,8 +1,8 @@
 import { i32 } from <stdint.h>
 import { print } from <stdio.h>
 
-pub void bark()
+pub bark(): void
 	print("bark")
 
-pub i32 get_paw_count()
+pub get_paw_count(): i32
 	return 4

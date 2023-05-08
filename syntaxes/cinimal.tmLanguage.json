@@ -126,7 +126,7 @@
 			"patterns": [
 				{
 					"name": "storage.type",
-					"match": "\\b(i32|f64|void|ptr|arr|thing|struct|enum|mut|pub)\\b"
+					"match": "\\b(i32|f64|void|ptr|arr|thing|struct|enum|mut|pub|pri)\\b"
 				}
 			]
 		},

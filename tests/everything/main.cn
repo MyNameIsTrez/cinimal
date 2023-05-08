@@ -18,13 +18,13 @@ struct person
 	names: names
 	country: country
 
-ptr thing allocate_one_person()
+pri allocate_one_person(): ptr thing
 	return calloc(1, person)
 
-void add(n: ptr mut i32)
+pri add(n: ptr mut i32): void
 	n*++
 
-i32 main()
+pub main(): i32
 	# single line comment
 	# multi
 	# line comment
