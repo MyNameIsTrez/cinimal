@@ -64,63 +64,63 @@
             "default": true,
             "order": 3
           },
-          "cinimal.removeRedundantReturnParentheses": {
+          "cinimal.elif": {
             "type": "boolean",
-            "markdownDescription": "Turn `return (i);` into `return i`\n\nThis setting is specifically for schools from the 42 Network, where these parentheses are mandatory",
+            "markdownDescription": "Turn `else if (foo == 42)` into `elif (foo == 42)`",
             "default": true,
             "order": 4
+          },
+          "cinimal.removeRedundantReturnParentheses": {
+            "type": "boolean",
+            "markdownDescription": "Turn `return (i);` into `return i;`\n\nThis setting is for students from the 42 Network, where these parentheses are mandatory",
+            "default": true,
+            "order": 5
           },
           "cinimal.hashtagComment": {
             "type": "boolean",
             "markdownDescription": "Turn `// foo` into `# foo`, and turn `/* bar` with `baz */` on the next line into `# bar` with `# baz` on the next line",
             "default": true,
-            "order": 5
-          },
-          "cinimal.elif": {
-            "type": "boolean",
-            "markdownDescription": "Turn `else if (foo == 3)` into `elif (foo == 3)`",
-            "default": true,
             "order": 6
           },
           "cinimal.printfToPrint": {
             "type": "boolean",
-            "markdownDescription": "Turn `printf(\"%d\\n\", 42);` into `print(\"%d\", 42)`",
+            "markdownDescription": "Turn `printf(\"%d\\n\", 42);` into `print(\"%d\", 42);`",
             "default": true,
             "order": 7
           },
           "cinimal.dereferenceOnRight": {
             "type": "boolean",
-            "markdownDescription": "Turn `(*nbr_ptr)++;` into `nbr_ptr*++`",
+            "markdownDescription": "Turn `(*nbr_ptr)++;` into `nbr_ptr*++;`",
             "default": true,
             "order": 8
           },
           "cinimal.noArrowOperator": {
             "type": "boolean",
-            "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42`\n\n**Note:** This setting has no effect when `#cinimal.dereferenceOnRight#` is off",
+            "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42;`\n\n**Note:** This setting has no effect when `#cinimal.dereferenceOnRight#` is off",
             "default": true,
             "order": 9
           },
           "cinimal.explicitTypeSize": {
             "type": "boolean",
-            "markdownDescription": "Turn `int n;` into `i32 n` on systems where an `int` is 32 bits.\n\n`float` is always 32 bits, but is also turned into `f32`",
+            "markdownDescription": "Turn `int n;` into `i32 n;` on systems where an `int` is 32 bits.\n\n`float` is always 32 bits, but will also be turned into `f32`",
             "default": true,
             "order": 10
           },
           "cinimal.separateDeclarationAndAssignment": {
             "type": "boolean",
-            "markdownDescription": "Turn `int n = 42;` into `int n` with `n = 42` on the next line",
+            "markdownDescription": "Turn `int n = 42;` into `int n;` with `n = 42;` on the next line",
             "default": true,
             "order": 11
           },
           "cinimal.ptrKeyword": {
             "type": "boolean",
-            "markdownDescription": "Turn `int *n;` into `int ptr n`",
+            "markdownDescription": "Turn `int *n;` into `int ptr n;`",
             "default": true,
             "order": 12
           },
           "cinimal.leftToRightTypeDeclaration": {
             "type": "boolean",
-            "markdownDescription": "Turn `int const * const * * n;` into `ptr ptr const ptr const int n`",
+            "markdownDescription": "Turn `int const * const * * n;` into `* * const * const int n;`",
             "default": true,
             "order": 13
           },
@@ -144,7 +144,7 @@
           },
           "cinimal.globalNamespace": {
             "type": "boolean",
-            "markdownDescription": "Turn `printf(\"%d\\n\", foo);` into `printf(\"%d\\n\", global::foo);`, given global `int foo`",
+            "markdownDescription": "Turn `printf(\"%d\\n\", foo);` into `printf(\"%d\\n\", global::foo);`, given global `int foo;`",
             "default": true,
             "order": 17
           },
