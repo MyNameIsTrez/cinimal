@@ -118,6 +118,12 @@
             "default": true,
             "order": 12
           },
+          "cinimal.staticByDefaultPubOtherwise": {
+            "type": "boolean",
+            "markdownDescription": "Turn `static void foo(void)` into `void foo(void)` and `void bar(void)` into `pub void bar(void)`",
+            "default": true,
+            "order": 13
+          },
           "cinimal.constByDefaultMutOtherwise": {
             "type": "boolean",
             "markdownDescription": "Turn `void foo(const int a, int b)` into `void foo(int a, mut int b)`",
