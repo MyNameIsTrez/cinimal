@@ -7,7 +7,7 @@ struct deque_student
 	i32 size
 	i32 capacity
 
-deque_student new()
+pub deque_student new()
 	mut deque_student deque
 	deque = 0
 	deque.data = calloc(1, student)
@@ -15,7 +15,7 @@ deque_student new()
 
 	return deque
 
-void _try_grow(ptr mut deque_student deque)
+void try_grow(ptr mut deque_student deque)
 	if deque*.size == deque*.capacity
 		deque*.capacity *= 2
 
@@ -36,32 +36,32 @@ void _try_grow(ptr mut deque_student deque)
 
 		deque*.start_index = 0
 
-void push_front(ptr mut deque_student deque, student student)
-	_try_grow(deque)
+pub void push_front(ptr mut deque_student deque, student student)
+	try_grow(deque)
 
 	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
 	deque*.data[deque*.start_index] = student
 
 	deque*.size++
 
-ptr student back(ptr mut deque_student deque)
-	return deque*.data + _get_back_index(deque)
+pub ptr student back(ptr mut deque_student deque)
+	return deque*.data + get_back_index(deque)
 
-void push_back(ptr mut deque_student deque, student student)
-	_try_grow(deque)
+pub void push_back(ptr mut deque_student deque, student student)
+	try_grow(deque)
 
-	deque*.data[_get_back_index(deque)] = student
+	deque*.data[get_back_index(deque)] = student
 
 	deque*.size++
 
-i32 _get_back_index(ptr mut deque_student deque)
+i32 get_back_index(ptr mut deque_student deque)
 	return (deque*.start_index + deque*.size) % deque*.capacity
 
-void student pop_front(ptr mut deque_student deque)
+pub void student pop_front(ptr mut deque_student deque)
 	deque*.start_index++
 	deque*.size--
 
-void student pop_back(ptr mut deque_student deque)
+pub void student pop_back(ptr mut deque_student deque)
 	deque*.size--
 
 i32 main()

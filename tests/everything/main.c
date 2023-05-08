@@ -21,11 +21,11 @@ struct person {
 	enum country country;
 };
 
-void *allocate_one_person(void) {
+static void *allocate_one_person(void) {
     return calloc(1, sizeof(struct person));
 }
 
-void add(int32_t * const n) {
+static void add(int32_t * const n) {
     (*n)++;
 }
 

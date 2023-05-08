@@ -1,5 +1,5 @@
-void bark()
+pub void bark()
 	print("bark")
 
-i32 get_paw_count()
+pub i32 get_paw_count()
 	return 4
