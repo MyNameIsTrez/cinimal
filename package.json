@@ -136,17 +136,23 @@
             "default": true,
             "order": 15
           },
+          "cinimal.globalNamespace": {
+            "type": "boolean",
+            "markdownDescription": "Turn `printf(\"%d\\n\", foo);` into `printf(\"%d\\n\", global::foo);`, given global `int foo`",
+            "default": true,
+            "order": 16
+          },
           "cinimal.nullptr": {
             "type": "boolean",
             "markdownDescription": "Turn `if (foo == NULL)` into `if (foo == nullptr)`",
             "default": true,
-            "order": 16
+            "order": 17
           },
           "cinimal.imports": {
             "type": "boolean",
             "markdownDescription": "Turn `#include <assert.h>` into `import { assert } from <assert.h>`",
             "default": true,
-            "order": 17
+            "order": 18
           }
         }
       }
