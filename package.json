@@ -54,13 +54,13 @@
           },
           "cinimal.oneInstructionPerLine": {
             "type": "boolean",
-            "markdownDescription": "Turn `n += 2; n *= 3;` into `n += 2` with `n *= 3` on the next line",
+            "markdownDescription": "Turn `n += 2; n *= 3;` into `n += 2;` with `n *= 3;` on the next line",
             "default": true,
             "order": 2
           },
           "cinimal.removeParentheses": {
             "type": "boolean",
-            "markdownDescription": "Turn `while (i < 3)` into `while i < 3`\n\nThe same goes for `for`, `if`, and `elif`",
+            "markdownDescription": "Turn `while (i < 3)` into `while i < 3`\n\nThe same goes for `for`, `if`, `else if`, and `switch`",
             "default": true,
             "order": 3
           },
@@ -76,83 +76,89 @@
             "default": true,
             "order": 5
           },
+          "cinimal.elif": {
+            "type": "boolean",
+            "markdownDescription": "Turn `else if (foo == 3)` into `elif (foo == 3)`",
+            "default": true,
+            "order": 6
+          },
           "cinimal.printfToPrint": {
             "type": "boolean",
             "markdownDescription": "Turn `printf(\"%d\\n\", 42);` into `print(\"%d\", 42)`",
             "default": true,
-            "order": 6
+            "order": 7
           },
           "cinimal.dereferenceOnRight": {
             "type": "boolean",
             "markdownDescription": "Turn `(*nbr_ptr)++;` into `nbr_ptr*++`",
             "default": true,
-            "order": 7
+            "order": 8
           },
           "cinimal.noArrowOperator": {
             "type": "boolean",
             "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42`\n\n**Note:** This setting has no effect when `#cinimal.dereferenceOnRight#` is off",
             "default": true,
-            "order": 8
+            "order": 9
           },
           "cinimal.explicitTypeSize": {
             "type": "boolean",
             "markdownDescription": "Turn `int n;` into `i32 n` on systems where an `int` is 32 bits.\n\n`float` is always 32 bits, but is also turned into `f32`",
             "default": true,
-            "order": 9
+            "order": 10
           },
           "cinimal.separateDeclarationAndAssignment": {
             "type": "boolean",
             "markdownDescription": "Turn `int n = 42;` into `int n` with `n = 42` on the next line",
             "default": true,
-            "order": 10
+            "order": 11
           },
           "cinimal.ptrKeyword": {
             "type": "boolean",
             "markdownDescription": "Turn `int *n;` into `int ptr n`",
             "default": true,
-            "order": 11
+            "order": 12
           },
           "cinimal.leftToRightTypeDeclaration": {
             "type": "boolean",
             "markdownDescription": "Turn `int const * const * * n;` into `ptr ptr const ptr const int n`",
             "default": true,
-            "order": 12
+            "order": 13
           },
           "cinimal.staticByDefaultPubOtherwise": {
             "type": "boolean",
             "markdownDescription": "Turn `static void foo(void)` into `void foo(void)` and `void bar(void)` into `pub void bar(void)`",
             "default": true,
-            "order": 13
+            "order": 14
           },
           "cinimal.constByDefaultMutOtherwise": {
             "type": "boolean",
             "markdownDescription": "Turn `void foo(const int a, int b)` into `void foo(int a, mut int b)`",
             "default": true,
-            "order": 14
+            "order": 15
           },
           "cinimal.namespacedEnums": {
             "type": "boolean",
             "markdownDescription": "Turn `type == cat` into `type == animal::cat`, given `enum animal { cat, dog };`",
             "default": true,
-            "order": 15
+            "order": 16
           },
           "cinimal.globalNamespace": {
             "type": "boolean",
             "markdownDescription": "Turn `printf(\"%d\\n\", foo);` into `printf(\"%d\\n\", global::foo);`, given global `int foo`",
             "default": true,
-            "order": 16
+            "order": 17
           },
           "cinimal.nullptr": {
             "type": "boolean",
             "markdownDescription": "Turn `if (foo == NULL)` into `if (foo == nullptr)`",
             "default": true,
-            "order": 17
+            "order": 18
           },
           "cinimal.imports": {
             "type": "boolean",
             "markdownDescription": "Turn `#include <assert.h>` into `import { assert } from <assert.h>`",
             "default": true,
-            "order": 18
+            "order": 19
           }
         }
       }

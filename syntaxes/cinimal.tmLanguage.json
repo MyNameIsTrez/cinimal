@@ -76,7 +76,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control",
-					"match": "\\b(if|elif|else|while|return)\\b"
+					"match": "\\b(if|elif|else|while|switch|return)\\b"
 				}
 			]
 		},
