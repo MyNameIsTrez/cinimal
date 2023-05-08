@@ -1,3 +1,6 @@
+import { i32 } from <stdint.h>
+import { print } from <stdio.h>
+
 pub void bark()
 	print("bark")
 

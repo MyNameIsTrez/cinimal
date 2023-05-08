@@ -1,3 +1,8 @@
+import { assert } from <assert.h>
+import { f64, i32 } from <stdint.h>
+import { calloc, free } from <stdlib.h>
+import { memcpy } from <string.h>
+
 struct student
 	f64 age
 

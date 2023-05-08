@@ -1,4 +1,9 @@
-import { bark, get_paw_count } from animals/dog.cn
+import { bark, get_paw_count } from "animals/dog.h"
+
+import { assert } from <assert.h>
+import { f64, i32 } from <stdint.h>
+import { print } from <stdio.h>
+import { calloc, free } from <stdlib.h>
 
 struct names
 	char *first_name
