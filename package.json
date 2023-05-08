@@ -128,19 +128,25 @@
             "type": "boolean",
             "markdownDescription": "Turn `void foo(const int a, int b)` into `void foo(int a, mut int b)`",
             "default": true,
-            "order": 13
+            "order": 14
           },
           "cinimal.namespacedEnums": {
             "type": "boolean",
             "markdownDescription": "Turn `type == cat` into `type == animal::cat`, given `enum animal { cat, dog };`",
             "default": true,
-            "order": 14
+            "order": 15
           },
           "cinimal.nullptr": {
             "type": "boolean",
-            "markdownDescription": "Turn `if (foo == NULL)` into `if (foo == nullptr)``",
+            "markdownDescription": "Turn `if (foo == NULL)` into `if (foo == nullptr)`",
             "default": true,
-            "order": 14
+            "order": 16
+          },
+          "cinimal.imports": {
+            "type": "boolean",
+            "markdownDescription": "Turn `#include <assert.h>` into `import { assert } from <assert.h>`",
+            "default": true,
+            "order": 17
           }
         }
       }
