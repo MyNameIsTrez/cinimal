@@ -6,29 +6,29 @@ import { print } from <stdio.h>
 import { calloc, free } from <stdlib.h>
 
 struct names
-	char *first_name
-	char *last_name
+	first_name: char *
+	last_name: char *
 
 enum country
 	ukraine
 	mexico
 
 struct person
-	f64 age
-	names names
-	country country
+	age: f64
+	names: names
+	country: country
 
 ptr thing allocate_one_person()
 	return calloc(1, person)
 
-void add(ptr mut i32 n)
+void add(n: ptr mut i32)
 	n*++
 
 i32 main()
 	# single line comment
 	# multi
 	# line comment
-	mut i32 i
+	i: mut i32
 	i = 0
 
 	while i < 3
@@ -44,15 +44,15 @@ i32 main()
 	add(&i)
 	assert(i == 4)
 
-	dog::bark()
-	assert(dog::get_paw_count() == 4)
+	bark()
+	assert(get_paw_count() == 4)
 
-	assert(country::mexico == 1)
+	assert(mexico == 1)
 
-	mut ptr mut person people
+	people: mut ptr mut person
 	people = calloc(2, person)
 
-	ptr mut person frank
+	frank: ptr mut person
 	frank = &people[0]
 	frank*.age = 24 * 1.5
 	assert(people[0].age == 36)
@@ -61,8 +61,8 @@ i32 main()
 
 	assert(people[1].names.last_name == nullptr);
 
-	people[1].country = country::mexico
-	assert(people[1].country != country::ukraine)
+	people[1].country = mexico
+	assert(people[1].country != ukraine)
 
 	free(people)
 	people = allocate_one_person()
@@ -72,7 +72,7 @@ i32 main()
 	free(people)
 	people = nullptr
 
-	arr[2][3] mut person friends
+	friends: arr[2][3] mut person
 	friends = 0
 	friends[0][2].age = 13
 	assert(friends[0][2].age == 13)

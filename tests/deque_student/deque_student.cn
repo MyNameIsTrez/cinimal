@@ -4,31 +4,31 @@ import { calloc, free } from <stdlib.h>
 import { memcpy } from <string.h>
 
 struct student
-	f64 age
+	age: f64
 
 struct deque_student
-	ptr student data
-	i32 start_index
-	i32 size
-	i32 capacity
+	data: ptr student
+	start_index: i32
+	size: i32
+	capacity: i32
 
 pub deque_student new()
-	mut deque_student deque
+	deque: mut deque_student
 	deque = 0
 	deque.data = calloc(1, student)
 	deque.capacity = 1
 
 	return deque
 
-void try_grow(ptr mut deque_student deque)
+void try_grow(deque: ptr mut deque_student)
 	if deque*.size == deque*.capacity
 		deque*.capacity *= 2
 
-		ptr mut student new_data
+		new_data: ptr mut student
 		new_data = calloc(deque*.capacity, student)
 
 		# An example ring buffer is [B,C, ,A], where the start_index is 3
-		mut i32 trailing
+		trailing: mut i32
 		trailing = deque*.capacity - deque*.start_index
 
 		# This copies the part that wrapped below index 0 to the other side
@@ -41,7 +41,7 @@ void try_grow(ptr mut deque_student deque)
 
 		deque*.start_index = 0
 
-pub void push_front(ptr mut deque_student deque, student student)
+pub void push_front(deque: ptr mut deque_student, student: student)
 	try_grow(deque)
 
 	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
@@ -49,41 +49,41 @@ pub void push_front(ptr mut deque_student deque, student student)
 
 	deque*.size++
 
-pub ptr student back(ptr mut deque_student deque)
+pub ptr student back(deque: ptr mut deque_student)
 	return deque*.data + get_back_index(deque)
 
-pub void push_back(ptr mut deque_student deque, student student)
+pub void push_back(deque: ptr mut deque_student, student: student)
 	try_grow(deque)
 
 	deque*.data[get_back_index(deque)] = student
 
 	deque*.size++
 
-i32 get_back_index(ptr mut deque_student deque)
+i32 get_back_index(deque: ptr mut deque_student)
 	return (deque*.start_index + deque*.size) % deque*.capacity
 
-pub void student pop_front(ptr mut deque_student deque)
+pub void student pop_front(deque: ptr mut deque_student)
 	deque*.start_index++
 	deque*.size--
 
-pub void student pop_back(ptr mut deque_student deque)
+pub void student pop_back(deque: ptr mut deque_student)
 	deque*.size--
 
 i32 main()
-	mut deque_student deque
+	deque: mut deque_student
 	deque = deque_student::new()
 
-	mut student alice
+	alice: mut student
 	alice = 0
 	alice.age = 10
 	deque_student::push_back(&deque, alice)
 
-	mut student bob
+	bob: mut student
 	bob = 0
 	bob.age = 11
 	deque_student::push_back(&deque, bob)
 
-	mut student charles
+	charles: mut student
 	charles = 0
 	charles.age = 9
 	deque_student::push_front(&deque, charles)
