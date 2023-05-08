@@ -2,7 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-import * as treeSitter from 'tree-sitter-c';
+import * as parser from 'tree-sitter';
+import * as c from 'tree-sitter-c';
 // const treeSitter = require('tree-sitter-c');
 
 // This method is called when your extension is activated
@@ -13,7 +14,9 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "cinimal" is now active!');
 
-	console.log(treeSitter);
+	console.log(parser);
+	console.log(c);
+	// console.log(parser.setLanguage(c));
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
