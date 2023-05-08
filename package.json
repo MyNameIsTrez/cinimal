@@ -90,7 +90,7 @@
           },
           "cinimal.noArrowOperator": {
             "type": "boolean",
-            "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42`\n\nThis setting has no effect if the `#cinimal.dereferenceOnRight#` setting is turned off",
+            "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42`\n\n**Note:** This setting has no effect when `#cinimal.dereferenceOnRight#` is off",
             "default": true,
             "order": 8
           },
