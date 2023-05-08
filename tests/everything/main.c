@@ -11,8 +11,8 @@ struct names {
 };
 
 enum country {
-	country_ukraine,
-	country_mexico,
+	ukraine,
+	mexico,
 };
 
 struct person {
@@ -50,7 +50,7 @@ int32_t main(void) {
 	bark();
 	assert(get_paw_count() == 4);
 
-	assert(country_mexico == 1);
+	assert(mexico == 1);
 
 	struct person * people = calloc(2, sizeof(struct person));
 
@@ -62,8 +62,8 @@ int32_t main(void) {
 
 	assert(people[1].names.last_name == NULL);
 
-	people[1].country = country_mexico;
-	assert(people[1].country != country_ukraine);
+	people[1].country = mexico;
+	assert(people[1].country != ukraine);
 
 	free(people);
 	people = allocate_one_person();
