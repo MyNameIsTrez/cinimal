@@ -19,10 +19,7 @@
 - Sort all C imports in alphabetical order, and show an error if no function was included from it
 
 # TODO:
-- Add "everything" test screenshot to GH readme
 - Add gif to the extension page showcasing how to use cinimal
-- Enums, structs and file namespaces shouldn't have to be capitalized
-- Make all future extension settings already toggleable
 
 # Tests to add
 - Add test showcasing only one instruction per line, so no `while (i += 1)`
@@ -49,6 +46,7 @@
 - Do I want ! or ~ or - or + or casting to also be on the right side of a variable?
 - Is it possible to let cinimal use snake_case for everything, including file and folder names in import statements and includes? I think it might cause problems when the C file uses both an uppercase and lowercase variable at once.
 - Do I want to keep = {0} being translated to = 0?
+- Do I want the "everything" test to be a screenshot on the GH readme, or do I maybe want to link it directly?
 
 # Turn these into settings
 - Transpile printf("\n") to print()

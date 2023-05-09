@@ -53,7 +53,7 @@ pub main(): i32
 	v0 = &values[0]
 	v0.type = STRING
 	assert(values[0].type == STRING)
-	assert(v0.string == NULL)
+	assert(v0.string == nullptr)
 	v0.string = "frank"
 	assert(values[0].string == "frank")
 

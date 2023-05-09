@@ -114,7 +114,7 @@
           },
           "cinimal.explicitTypeSize": {
             "type": "boolean",
-            "markdownDescription": "Turn `int n;` into `i32 n;` on systems where an `int` is 32 bits.\n\n`float` is always 32 bits, but will also be turned into `f32`",
+            "markdownDescription": "Turn `int n;` into `i32 n;` on systems where an `int` is 32 bits.\n\n`float` is always 32 bits, but will likewise be turned into `f32`",
             "default": true,
             "order": 12
           },

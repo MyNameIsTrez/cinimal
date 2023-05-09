@@ -30,7 +30,7 @@ pri try_grow(deque: ptr mut Deque)
 		new_elements: ptr mut u8
 		new_elements = calloc(deque.capacity * 2, deque.type_size)
 
-		# An example ring buffer is [B,C, ,A], where the start_index is 3
+		# An example deque is [B,C, ,A], where the start_index is 3
 		trailing: mut i32
 		trailing = deque.capacity - deque.start_index
 
@@ -55,6 +55,7 @@ pri try_grow(deque: ptr mut Deque)
 		deque.capacity *= 2
 
 pri modulo(a: i32, b: i32): i32
+    # TODO: Can be done more efficiently
     return ((a % b) + b) % b
 
 pri assign_element(deque: ptr Deque, element: ptr u8, index: i32)
@@ -130,12 +131,7 @@ pub main(): i32
 	Fruit apple
 	apple.name = "apple"
 	push_back(&deque, (ptr u8)&apple)
-	assert(
-	    strcmp(
-	        ((ptr Fruit)back(&deque)).name,
-	        "apple"
-	    ) == 0
-	)
+	assert(((ptr Fruit)back(&deque)).name == "apple")
 	delete(&deque)
 
 	return 0

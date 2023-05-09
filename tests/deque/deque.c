@@ -32,7 +32,7 @@ static void try_grow(Deque * const deque) {
 	if (deque->size == deque->capacity) {
 		uint8_t * const new_elements = calloc(deque->capacity * 2, deque->type_size);
 
-		// An example ring buffer is [B,C, ,A], where the start_index is 3
+		// An example deque is [B,C, ,A], where the start_index is 3
 		int32_t trailing;
 		trailing = deque->capacity - deque->start_index;
 
@@ -59,6 +59,7 @@ static void try_grow(Deque * const deque) {
 }
 
 static int32_t modulo(int32_t const a, int32_t const b) {
+    // TODO: Can be done more efficiently
     return ((a % b) + b) % b;
 }
 
@@ -147,12 +148,7 @@ int32_t main(void) {
 	Fruit apple;
 	apple.name = "apple";
 	push_back(&deque, (uint8_t *)&apple);
-	assert(
-	    strcmp(
-	        ((Fruit *)back(&deque))->name,
-	        "apple"
-	    ) == 0
-	);
+	assert(strcmp(((Fruit *)back(&deque))->name, "apple") == 0);
 	delete(&deque);
 
 	return 0;
