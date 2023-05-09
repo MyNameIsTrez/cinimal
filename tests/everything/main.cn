@@ -5,12 +5,12 @@ import { f64, i32 } from <stdint.h>
 import { print } from <stdio.h>
 import { calloc, free } from <stdlib.h>
 
-typedef enum Type
+enum Type
 	INTEGER
 	STRING
 
-typedef struct Value
-	type: Type
+struct typedef Value
+	type: enum Type
 	union
 		integer: i32
 		string: ptr char
