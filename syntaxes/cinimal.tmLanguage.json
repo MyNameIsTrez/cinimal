@@ -188,7 +188,7 @@
 			"patterns": [
 				{
 					"name": "variable.name",
-					"match": "\\b([a-z]|_)+\\b"
+					"match": "\\b(\\w)+\\b"
 				}
 			]
 		}
