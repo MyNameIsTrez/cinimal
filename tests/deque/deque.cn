@@ -126,7 +126,7 @@ pub main(): i32
 
 	delete(&deque)
 
-	deque = new(sizeof(Fruit))
+	deque = new(Fruit)
 	Fruit apple
 	apple.name = "apple"
 	push_back(&deque, (ptr u8)&apple)
