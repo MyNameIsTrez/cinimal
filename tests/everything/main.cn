@@ -18,7 +18,7 @@ struct typedef Value
 pri allocate_one_value(): ptr thing
 	return calloc(1, Value)
 
-pri add(n: ptr mut i32): void
+pri add(n: ptr mut i32)
 	n*++
 
 pub main(): i32
