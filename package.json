@@ -106,7 +106,7 @@
             "default": true,
             "order": 10
           },
-          "cinimal.automaticPtrToStructDereferencing": {
+          "cinimal.implicitArrowDereference": {
             "type": "boolean",
             "markdownDescription": "Turn `person->age = 42;` into `person.age = 42;`",
             "default": true,
