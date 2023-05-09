@@ -5,24 +5,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct names {
-	char *first_name;
-	char *last_name;
+struct Names {
+	char * first_name;
+	char * last_name;
 };
 
-enum country {
+typedef enum Country {
 	ukraine,
 	mexico,
-};
+} Country;
 
-struct person {
+typedef struct Person {
 	double age;
-	struct names names;
-	enum country country;
-};
+	struct Names names;
+	Country country;
+} Person;
 
-static void *allocate_one_person(void) {
-    return calloc(1, sizeof(struct person));
+typedef enum {
+    INTEGER,
+    REAL,
+} Type;
+
+typedef struct {
+    Type type;
+    union {
+        int integer;
+        float real;
+    };
+} Value;
+
+Value value_new_integer(int integer)
+{
+  Value v;
+  v.type = INTEGER;
+  v.integer = integer;
+  return v;
+}
+
+static void * allocate_one_person(void) {
+    return calloc(1, sizeof(Person));
 }
 
 static void add(int32_t * const n) {
@@ -52,9 +73,9 @@ int32_t main(void) {
 
 	assert(mexico == 1);
 
-	struct person * people = calloc(2, sizeof(struct person));
+	Person * people = calloc(2, sizeof(Person));
 
-    struct person * const frank = &people[0];
+    Person * const frank = &people[0];
 	frank->age = 24 * 1.5;
 	assert(people[0].age == 36);
 	frank->names.last_name = "frank";
@@ -73,9 +94,15 @@ int32_t main(void) {
 	free(people);
 	people = NULL;
 
-	struct person friends[2][3] = {0};
+	Person friends[2][3] = {0};
 	friends[0][2].age = 13;
 	assert(friends[0][2].age == 13);
+
+    Value v;
+    v.integer = 42;
+    assert(v.integer == 42);
+    v.real = 1337;
+    assert(v.real == 1337);
 
 	printf("All tests passed!\n");
 

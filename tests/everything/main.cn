@@ -5,21 +5,37 @@ import { f64, i32 } from <stdint.h>
 import { print } from <stdio.h>
 import { calloc, free } from <stdlib.h>
 
-struct names
+struct Names
 	first_name: char *
 	last_name: char *
 
-enum country
-	ukraine
-	mexico
+typedef enum Country Country
+	UKRAINE
+	MEXICO
 
-struct person
+typedef struct Person
 	age: f64
-	names: names
-	country: country
+	names: struct Names
+	country: Country
+
+typedef enum Type
+	INTEGER
+	REAL
+
+typedef struct Value
+	type: Type
+	union
+		integer: i32
+		real: f64
+
+pri value_new_integer(integer: i32): Value
+	v: mut Value
+	v.type = INTEGER
+	v.integer = integer
+	return v
 
 pri allocate_one_person(): ptr thing
-	return calloc(1, person)
+	return calloc(1, Person)
 
 pri add(n: ptr mut i32): void
 	n*++
@@ -47,12 +63,12 @@ pub main(): i32
 	bark()
 	assert(get_paw_count() == 4)
 
-	assert(mexico == 1)
+	assert(MEXICO == 1)
 
-	people: mut ptr mut person
-	people = calloc(2, person)
+	people: mut ptr mut Person
+	people = calloc(2, Person)
 
-	frank: ptr mut person
+	frank: ptr mut Person
 	frank = &people[0]
 	frank*.age = 24 * 1.5
 	assert(people[0].age == 36)
@@ -61,8 +77,8 @@ pub main(): i32
 
 	assert(people[1].names.last_name == nullptr);
 
-	people[1].country = mexico
-	assert(people[1].country != ukraine)
+	people[1].country = MEXICO
+	assert(people[1].country != UKRAINE)
 
 	free(people)
 	people = allocate_one_person()
@@ -72,9 +88,15 @@ pub main(): i32
 	free(people)
 	people = nullptr
 
-	friends: arr[2][3] mut person
+	friends: arr[2][3] mut Person
 	friends = 0
 	friends[0][2].age = 13
 	assert(friends[0][2].age == 13)
+
+    v: mut Value
+    v.integer = 42
+    assert(v.integer == 42)
+    v.real = 1337
+    assert(v.real == 1337)
 
 	return 0

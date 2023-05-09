@@ -12,6 +12,9 @@
 			"include": "#control_keywords"
 		},
 		{
+			"include": "#keywords"
+		},
+		{
 			"include": "#functions"
 		},
 		{
@@ -80,6 +83,14 @@
 				}
 			]
 		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword",
+					"match": "\\b(typedef)\\b"
+				}
+			]
+		},
 		"functions": {
 			"patterns": [
 				{
@@ -126,7 +137,7 @@
 			"patterns": [
 				{
 					"name": "storage.type",
-					"match": "\\b(i32|f64|void|ptr|arr|thing|struct|enum|mut|pub|pri)\\b"
+					"match": "\\b(i32|f32|f64|char|void|ptr|arr|thing|struct|enum|union|mut|pub|pri)\\b"
 				}
 			]
 		},
@@ -169,7 +180,7 @@
 			"patterns": [
 				{
 					"name": "constant.numeric",
-					"match": "\\t((?!else|i32|f64|void|ptr|arr|thing|struct|enum)\\w)*\\n"
+					"match": "\\t((?!else|union)\\w)*\\n"
 				}
 			]
 		},
