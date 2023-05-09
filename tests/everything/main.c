@@ -15,7 +15,7 @@ typedef struct {
     enum Type type;
     union {
         int32_t integer;
-        char *string;
+        char * string;
     };
 } Value;
 

@@ -1,0 +1,113 @@
+import { assert } from <assert.h>
+import { f64, i32 } from <stdint.h>
+import { calloc, free } from <stdlib.h>
+import { memcpy } from <string.h>
+
+struct Student
+	age: f64
+
+struct Deque
+	data: ptr Student
+	start_index: i32
+	size: i32
+	capacity: i32
+
+pub new(): Deque
+	deque: mut Deque
+	deque = {}
+	deque.data = calloc(1, Student)
+	deque.capacity = 1
+
+	return deque
+
+pri try_grow(deque: ptr mut Deque): void
+	if deque.size == deque.capacity
+		deque.capacity *= 2
+
+		new_data: ptr mut Student
+		new_data = calloc(deque.capacity, Student)
+
+		# An example ring buffer is [B,C, ,A], where the start_index is 3
+		trailing: mut i32
+		trailing = deque.capacity - deque.start_index
+
+		# This copies the part that wrapped below index 0 to the other side
+		memcpy(new_data, deque.data + deque.start_index, trailing * Student)
+		# This copies from index 0 on
+		memcpy(new_data + trailing, deque.data, (deque.size - trailing) * Student)
+
+		free(deque.data)
+		deque.data = new_data
+
+		deque.start_index = 0
+
+pri modulo(a: i32, b: i32): i32
+    return ((a % b) + b) % b
+
+pub push_front(deque: ptr mut Deque, student: Student): void
+	try_grow(deque)
+
+	deque.start_index = modulo(deque.start_index - 1, deque.capacity)
+	deque.data[deque.start_index] = student
+
+	deque.size++
+
+pub push_back(deque: ptr mut Deque, student: Student): void
+	try_grow(deque)
+
+    index: i32
+    index = (deque.start_index + deque.size) % deque.capacity
+	deque.data[index] = student
+
+	deque.size++
+
+pub front(deque: ptr mut Deque): ptr Student
+	return deque.data + deque.start_index
+
+pub back(deque: ptr mut Deque): ptr Student
+    # TODO: Does this handle size=0 properly?
+    index: i32
+    index = (deque->start_index + deque->size - 1) % deque->capacity
+	return deque.data + index
+
+pub pop_front(deque: ptr mut Deque): void
+	deque.start_index = (deque.start_index + 1) % deque.capacity
+	deque.size--
+
+pub pop_back(deque: ptr mut Deque): void
+	deque.size--
+
+pub delete(deque: ptr mut Deque): void
+	free(deque.data)
+
+pub main(): i32
+	deque: mut Deque
+	deque = new()
+
+	alice: mut Student
+	alice = {}
+	alice.age = 10
+	push_back(&deque, alice)
+
+	bob: mut Student
+	bob = {}
+	bob.age = 11
+	push_back(&deque, bob)
+
+	charles: mut Student
+	charles = {}
+	charles.age = 9
+	push_front(&deque, charles)
+
+	assert(deque.data[3].age == 9)
+	assert(deque.data[0].age == 10)
+	assert(deque.data[1].age == 11)
+
+	assert(front(&deque).age == 9)
+	pop_front(&deque)
+	assert(back(&deque).age == 11)
+	pop_back(&deque)
+
+	delete(&deque)
+
+	return 0
