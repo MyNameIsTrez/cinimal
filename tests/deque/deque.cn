@@ -6,108 +6,136 @@ import { memcpy } from <string.h>
 struct Student
 	age: f64
 
+struct Fruit
+	name: ptr char
+
 struct Deque
-	data: ptr Student
+	elements: ptr u8
+	type_size: i32
 	start_index: i32
 	size: i32
 	capacity: i32
 
-pub new(): Deque
+pub new(type_size: i32): Deque
 	deque: mut Deque
 	deque = {}
-	deque.data = calloc(1, Student)
+	deque.elements = calloc(1, type_size)
+	deque.type_size = type_size
 	deque.capacity = 1
 
 	return deque
 
-pri try_grow(deque: ptr mut Deque): void
+pri try_grow(deque: ptr mut Deque)
 	if deque.size == deque.capacity
-		deque.capacity *= 2
-
-		new_data: ptr mut Student
-		new_data = calloc(deque.capacity, Student)
+		new_elements: ptr mut u8
+		new_elements = calloc(deque.capacity * 2, deque.type_size)
 
 		# An example ring buffer is [B,C, ,A], where the start_index is 3
 		trailing: mut i32
 		trailing = deque.capacity - deque.start_index
 
-		# This copies the part that wrapped below index 0 to the other side
-		memcpy(new_data, deque.data + deque.start_index, trailing * Student)
-		# This copies from index 0 on
-		memcpy(new_data + trailing, deque.data, (deque.size - trailing) * Student)
+		# Copies everything to the right of the unused elements
+		memcpy(
+			new_elements,
+			deque.elements + deque.start_index * deque.type_size,
+			trailing * deque.type_size
+		)
 
-		free(deque.data)
-		deque.data = new_data
+		# Copies everything to the left of the unused elements
+		memcpy(
+			new_elements + trailing * deque.type_size,
+			deque.elements,
+			(deque.size - trailing) * deque.type_size
+		)
+
+		free(deque.elements)
+		deque.elements = new_elements
 
 		deque.start_index = 0
+		deque.capacity *= 2
 
 pri modulo(a: i32, b: i32): i32
     return ((a % b) + b) % b
 
-pub push_front(deque: ptr mut Deque, student: Student): void
+pri assign_element(deque: ptr Deque, element: ptr u8, index: i32)
+	memcpy(deque.elements + index * deque.type_size, element, deque.type_size)
+
+pub push_front(deque: ptr mut Deque, element: ptr u8)
 	try_grow(deque)
 
 	deque.start_index = modulo(deque.start_index - 1, deque.capacity)
-	deque.data[deque.start_index] = student
+	assign_element(deque, element, deque.start_index)
 
 	deque.size++
 
-pub push_back(deque: ptr mut Deque, student: Student): void
+pub push_back(deque: ptr mut Deque, element: ptr u8)
 	try_grow(deque)
 
     index: i32
     index = (deque.start_index + deque.size) % deque.capacity
-	deque.data[index] = student
+	assign_element(deque, element, index)
 
 	deque.size++
 
-pub front(deque: ptr mut Deque): ptr Student
-	return deque.data + deque.start_index
+pub front(deque: ptr mut Deque): ptr u8
+	return deque.elements + deque.start_index * deque.type_size
 
-pub back(deque: ptr mut Deque): ptr Student
+pub back(deque: ptr mut Deque): ptr u8
     # TODO: Does this handle size=0 properly?
     index: i32
     index = (deque->start_index + deque->size - 1) % deque->capacity
-	return deque.data + index
+	return deque.elements + index * deque.type_size
 
-pub pop_front(deque: ptr mut Deque): void
+pub pop_front(deque: ptr mut Deque)
 	deque.start_index = (deque.start_index + 1) % deque.capacity
 	deque.size--
 
-pub pop_back(deque: ptr mut Deque): void
+pub pop_back(deque: ptr mut Deque)
 	deque.size--
 
-pub delete(deque: ptr mut Deque): void
-	free(deque.data)
+pub delete(deque: ptr mut Deque)
+	free(deque.elements)
 
 pub main(): i32
 	deque: mut Deque
-	deque = new()
+	deque = new(Student)
 
 	alice: mut Student
 	alice = {}
 	alice.age = 10
-	push_back(&deque, alice)
+	push_back(&deque, &alice)
 
 	bob: mut Student
 	bob = {}
 	bob.age = 11
-	push_back(&deque, bob)
+	push_back(&deque, &bob)
 
 	charles: mut Student
 	charles = {}
 	charles.age = 9
-	push_front(&deque, charles)
+	push_front(&deque, &charles)
 
-	assert(deque.data[3].age == 9)
-	assert(deque.data[0].age == 10)
-	assert(deque.data[1].age == 11)
+	assert(deque.elements[3].age == 9)
+	assert(deque.elements[0].age == 10)
+	assert(deque.elements[1].age == 11)
 
 	assert(front(&deque).age == 9)
 	pop_front(&deque)
 	assert(back(&deque).age == 11)
 	pop_back(&deque)
 
+	delete(&deque)
+
+	deque = new(sizeof(Fruit))
+	Fruit apple
+	apple.name = "apple"
+	push_back(&deque, (ptr u8)&apple)
+	assert(
+	    strcmp(
+	        ((ptr Fruit)back(&deque)).name,
+	        "apple"
+	    ) == 0
+	)
 	delete(&deque)
 
 	return 0

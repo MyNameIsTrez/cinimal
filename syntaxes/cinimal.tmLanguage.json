@@ -143,7 +143,7 @@
 			"patterns": [
 				{
 					"name": "storage.type",
-					"match": "\\b(i32|f32|f64|char|void|ptr|arr|thing|struct|enum|union|mut)\\b"
+					"match": "\\b(i32|u8|f32|f64|char|void|ptr|arr|thing|struct|enum|union|mut)\\b"
 				}
 			]
 		},
