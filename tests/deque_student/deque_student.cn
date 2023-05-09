@@ -21,53 +21,53 @@ pub new(): deque_student
 	return deque
 
 pri try_grow(deque: ptr mut deque_student): void
-	if deque*.size == deque*.capacity
-		deque*.capacity *= 2
+	if deque.size == deque.capacity
+		deque.capacity *= 2
 
 		new_data: ptr mut student
-		new_data = calloc(deque*.capacity, student)
+		new_data = calloc(deque.capacity, student)
 
 		# An example ring buffer is [B,C, ,A], where the start_index is 3
 		trailing: mut i32
-		trailing = deque*.capacity - deque*.start_index
+		trailing = deque.capacity - deque.start_index
 
 		# This copies the part that wrapped below index 0 to the other side
-		memcpy(new_data, deque*.data + deque*.start_index, trailing)
+		memcpy(new_data, deque.data + deque.start_index, trailing)
 		# This copies from index 0 on
-		memcpy(new_data + trailing, deque*.data, deque*.size - trailing)
+		memcpy(new_data + trailing, deque.data, deque.size - trailing)
 
-		free(deque*.data)
-		deque*.data = new_data
+		free(deque.data)
+		deque.data = new_data
 
-		deque*.start_index = 0
+		deque.start_index = 0
 
 pub push_front(deque: ptr mut deque_student, student: student): void
 	try_grow(deque)
 
-	deque*.start_index = (deque*.start_index - 1) % deque*.capacity
-	deque*.data[deque*.start_index] = student
+	deque.start_index = (deque.start_index - 1) % deque.capacity
+	deque.data[deque.start_index] = student
 
-	deque*.size++
+	deque.size++
 
 pub back(deque: ptr mut deque_student): ptr student
-	return deque*.data + get_back_index(deque)
+	return deque.data + get_back_index(deque)
 
 pub push_back(deque: ptr mut deque_student, student: student): void
 	try_grow(deque)
 
-	deque*.data[get_back_index(deque)] = student
+	deque.data[get_back_index(deque)] = student
 
-	deque*.size++
+	deque.size++
 
 pri get_back_index(deque: ptr mut deque_student): i32
-	return (deque*.start_index + deque*.size) % deque*.capacity
+	return (deque.start_index + deque.size) % deque.capacity
 
 pub pop_front(deque: ptr mut deque_student): void student
-	deque*.start_index++
-	deque*.size--
+	deque.start_index++
+	deque.size--
 
 pub pop_back(deque: ptr mut deque_student): void student
-	deque*.size--
+	deque.size--
 
 pub main(): i32
 	deque: mut deque_student

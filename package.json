@@ -106,9 +106,9 @@
             "default": true,
             "order": 10
           },
-          "cinimal.noArrowOperator": {
+          "cinimal.automaticPtrToStructDereferencing": {
             "type": "boolean",
-            "markdownDescription": "Turn `person->age = 42;` into `person*.age = 42;`\n\n**Note:** This setting has no effect when `#cinimal.dereferenceOnRight#` is off",
+            "markdownDescription": "Turn `person->age = 42;` into `person.age = 42;`",
             "default": true,
             "order": 11
           },
