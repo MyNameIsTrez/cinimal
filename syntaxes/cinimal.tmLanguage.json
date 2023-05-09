@@ -27,6 +27,12 @@
 			"include": "#types"
 		},
 		{
+			"include": "#pub"
+		},
+		{
+			"include": "#pri"
+		},
+		{
 			"include": "#strings"
 		},
 		{
@@ -137,7 +143,23 @@
 			"patterns": [
 				{
 					"name": "storage.type",
-					"match": "\\b(i32|f32|f64|char|void|ptr|arr|thing|struct|enum|union|mut|pub|pri)\\b"
+					"match": "\\b(i32|f32|f64|char|void|ptr|arr|thing|struct|enum|union|mut)\\b"
+				}
+			]
+		},
+		"pub": {
+			"patterns": [
+				{
+					"name": "keyword.control",
+					"match": "\\b(pub)\\b"
+				}
+			]
+		},
+		"pri": {
+			"patterns": [
+				{
+					"name": "storage.type",
+					"match": "\\b(pri)\\b"
 				}
 			]
 		},
