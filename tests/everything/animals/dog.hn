@@ -1,0 +1,6 @@
+#pragma once
+
+import { i32 } from <stdint.h>
+
+pub bark()
+pub get_paw_count(): i32

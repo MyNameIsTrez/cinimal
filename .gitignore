@@ -12,6 +12,7 @@
 !tests/**/*.c
 !tests/**/*.cn
 !tests/**/*.h
+!tests/**/*.hn
 
 !vsicons-custom-icons/file_type_cn.png
 !vsicons-custom-icons/file_type_cn.svg
