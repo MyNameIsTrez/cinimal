@@ -1,0 +1,60 @@
+import { deque_at, deque_back, deque_delete, deque_front, deque_new, deque_pop_back, deque_pop_front, deque_push_back, deque_push_front, deque_reserve, deque_set } from "deque.h"
+
+import { assert } from <assert.h>
+
+struct Student
+	age: f64
+
+struct Fruit
+	name: ptr char
+
+pub main(): i32
+	deque: mut Deque
+	deque = deque_new(Student)
+
+	alice: mut Student
+	alice = {10}
+	deque_push_back(&deque, &alice)
+
+	bob: mut Student
+	bob = {11}
+	deque_push_back(&deque, &bob)
+
+	charles: mut Student
+	charles = {9}
+	deque_push_front(&deque, &charles)
+
+	student: mut ptr Student
+
+    student = deque_at(&deque, 3)
+	assert(student->age == 9)
+    student = deque_at(&deque, 0)
+	assert(student->age == 10)
+    student = deque_at(&deque, 1)
+	assert(student->age == 11)
+
+    student = deque_front(&deque)
+	assert(student.age == 9)
+	deque_pop_front(&deque)
+
+    student = deque_back(&deque)
+	assert(student.age == 11)
+	deque_pop_back(&deque)
+
+	deque_delete(&deque)
+
+	deque = deque_new(Fruit)
+
+	deque_reserve(&deque, 100)
+	deque_push_back(&deque, &charles)
+	deque_reserve(&deque, 200)
+
+	Fruit apple
+	apple.name = "apple"
+	deque_push_back(&deque, &apple)
+	deque_set(&deque, &(Fruit){"banana"}, 1);
+	assert(((ptr Fruit)deque_back(&deque)).name == "banana")
+
+	deque_delete(&deque)
+
+	return 0
