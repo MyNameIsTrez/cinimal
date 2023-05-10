@@ -28,34 +28,32 @@ Deque deque_new(int32_t type_size) {
 	return deque;
 }
 
-static void try_grow(Deque * const deque) {
-	if (deque->size == deque->capacity) {
-		uint8_t * const new_elements = calloc(deque->capacity * 2, deque->type_size);
+void deque_reserve(Deque * const deque, int32_t const new_capacity) {
+	uint8_t * const new_elements = calloc(new_capacity, deque->type_size);
 
-		// An example deque is [B,C, ,A], where the start_index is 3
-		int32_t trailing;
-		trailing = deque->capacity - deque->start_index;
+	// An example deque is [B,C, ,A], where the start_index is 3
+	int32_t trailing;
+	trailing = deque->capacity - deque->start_index;
 
-		// Copies everything to the right of the unused elements
-		memcpy(
-		    new_elements,
-		    deque->elements + deque->start_index * deque->type_size,
-		    trailing * deque->type_size
-		);
+	// Copies everything to the right of the unused elements
+	memcpy(
+	    new_elements,
+	    deque->elements + deque->start_index * deque->type_size,
+	    trailing * deque->type_size
+	);
 
-		// Copies everything to the left of the unused elements
-		memcpy(
-		    new_elements + trailing * deque->type_size,
-		    deque->elements,
-		    (deque->size - trailing) * deque->type_size
-		);
+	// Copies everything to the left of the unused elements
+	memcpy(
+	    new_elements + trailing * deque->type_size,
+	    deque->elements,
+	    (deque->size - trailing) * deque->type_size
+	);
 
-		free(deque->elements);
-		deque->elements = new_elements;
+	free(deque->elements);
+	deque->elements = new_elements;
 
-		deque->start_index = 0;
-		deque->capacity *= 2;
-	}
+	deque->start_index = 0;
+	deque->capacity = new_capacity;
 }
 
 static int32_t modulo(int32_t const a, int32_t const b) {
@@ -68,7 +66,9 @@ void deque_set(Deque const * const deque, void const * const element, int32_t co
 }
 
 void deque_push_front(Deque * const deque, void const * const element) {
-	try_grow(deque);
+	if (deque->size == deque->capacity) {
+	    deque_reserve(deque, deque->capacity * 2);
+	}
 
 	deque->start_index = modulo(deque->start_index - 1, deque->capacity);
 	deque_set(deque, element, deque->start_index);
@@ -77,7 +77,9 @@ void deque_push_front(Deque * const deque, void const * const element) {
 }
 
 void deque_push_back(Deque * const deque, void const * const element) {
-	try_grow(deque);
+	if (deque->size == deque->capacity) {
+	    deque_reserve(deque, deque->capacity * 2);
+	}
 
     int32_t index;
     index = (deque->start_index + deque->size) % deque->capacity;
@@ -149,11 +151,14 @@ int32_t main(void) {
 	deque_delete(&deque);
 
 	deque = deque_new(sizeof(Fruit));
+	deque_reserve(&deque, 100);
+
 	Fruit apple;
 	apple.name = "apple";
 	deque_push_back(&deque, &apple);
 	deque_set(&deque, &(Fruit){"banana"}, 0);
 	assert(strcmp(((Fruit *)deque_back(&deque))->name, "banana") == 0);
+
 	deque_delete(&deque);
 
 	return 0;
