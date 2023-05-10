@@ -58,30 +58,30 @@ pri modulo(a: i32, b: i32): i32
     # TODO: Can be done more efficiently
     return ((a % b) + b) % b
 
-pri assign_element(deque: ptr Deque, element: ptr u8, index: i32)
+pub deque_set(deque: ptr Deque, element: ptr thing, index: i32)
 	memcpy(deque.elements + index * deque.type_size, element, deque.type_size)
 
-pub deque_push_front(deque: ptr mut Deque, element: ptr u8)
+pub deque_push_front(deque: ptr mut Deque, element: ptr thing)
 	try_grow(deque)
 
 	deque.start_index = modulo(deque.start_index - 1, deque.capacity)
-	assign_element(deque, element, deque.start_index)
+	deque_set(deque, element, deque.start_index)
 
 	deque.size++
 
-pub deque_push_back(deque: ptr mut Deque, element: ptr u8)
+pub deque_push_back(deque: ptr mut Deque, element: ptr thing)
 	try_grow(deque)
 
     index: i32
     index = (deque.start_index + deque.size) % deque.capacity
-	assign_element(deque, element, index)
+	deque_set(deque, element, index)
 
 	deque.size++
 
-pub deque_front(deque: ptr mut Deque): ptr u8
+pub deque_front(deque: ptr mut Deque): ptr thing
 	return deque.elements + deque.start_index * deque.type_size
 
-pub deque_back(deque: ptr mut Deque): ptr u8
+pub deque_back(deque: ptr mut Deque): ptr thing
     # TODO: Does this handle size=0 properly?
     index: i32
     index = (deque.start_index + deque.size - 1) % deque.capacity
@@ -138,8 +138,9 @@ pub main(): i32
 	deque = deque_new(Fruit)
 	Fruit apple
 	apple.name = "apple"
-	deque_push_back(&deque, (ptr u8)&apple)
-	assert(((ptr Fruit)deque_back(&deque)).name == "apple")
+	deque_push_back(&deque, &apple)
+	deque_set(&deque, &(Fruit){"banana"}, 0);
+	assert(((ptr Fruit)deque_back(&deque)).name == "banana")
 	deque_delete(&deque)
 
 	return 0

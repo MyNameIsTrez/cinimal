@@ -63,25 +63,25 @@ static int32_t modulo(int32_t const a, int32_t const b) {
     return ((a % b) + b) % b;
 }
 
-static void assign_element(Deque const * const deque, uint8_t const * const element, int32_t const index) {
+void deque_set(Deque const * const deque, void const * const element, int32_t const index) {
 	memcpy(deque->elements + index * deque->type_size, element, deque->type_size);
 }
 
-void deque_push_front(Deque * const deque, uint8_t const * const element) {
+void deque_push_front(Deque * const deque, void const * const element) {
 	try_grow(deque);
 
 	deque->start_index = modulo(deque->start_index - 1, deque->capacity);
-	assign_element(deque, element, deque->start_index);
+	deque_set(deque, element, deque->start_index);
 
 	deque->size++;
 }
 
-void deque_push_back(Deque * const deque, uint8_t const * const element) {
+void deque_push_back(Deque * const deque, void const * const element) {
 	try_grow(deque);
 
     int32_t index;
     index = (deque->start_index + deque->size) % deque->capacity;
-	assign_element(deque, element, index);
+	deque_set(deque, element, index);
 
 	deque->size++;
 }
@@ -121,13 +121,13 @@ int32_t main(void) {
 	deque = deque_new(sizeof(Student));
 
 	Student alice = {10};
-	deque_push_back(&deque, (uint8_t *)&alice);
+	deque_push_back(&deque, &alice);
 
 	Student bob = {11};
-	deque_push_back(&deque, (uint8_t *)&bob);
+	deque_push_back(&deque, &bob);
 
 	Student charles = {9};
-	deque_push_front(&deque, (uint8_t *)&charles);
+	deque_push_front(&deque, &charles);
 
     Student const * student;
 
@@ -151,8 +151,9 @@ int32_t main(void) {
 	deque = deque_new(sizeof(Fruit));
 	Fruit apple;
 	apple.name = "apple";
-	deque_push_back(&deque, (uint8_t *)&apple);
-	assert(strcmp(((Fruit *)deque_back(&deque))->name, "apple") == 0);
+	deque_push_back(&deque, &apple);
+	deque_set(&deque, &(Fruit){"banana"}, 0);
+	assert(strcmp(((Fruit *)deque_back(&deque))->name, "banana") == 0);
 	deque_delete(&deque);
 
 	return 0;
