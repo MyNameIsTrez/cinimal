@@ -19,7 +19,7 @@ typedef struct Deque {
 	int32_t capacity;
 } Deque;
 
-Deque new(int32_t type_size) {
+Deque deque_new(int32_t type_size) {
 	Deque deque = {};
 	deque.elements = calloc(1, type_size);
 	deque.type_size = type_size;
@@ -67,7 +67,7 @@ static void assign_element(Deque const * const deque, uint8_t const * const elem
 	memcpy(deque->elements + index * deque->type_size, element, deque->type_size);
 }
 
-void push_front(Deque * const deque, uint8_t const * const element) {
+void deque_push_front(Deque * const deque, uint8_t const * const element) {
 	try_grow(deque);
 
 	deque->start_index = modulo(deque->start_index - 1, deque->capacity);
@@ -76,7 +76,7 @@ void push_front(Deque * const deque, uint8_t const * const element) {
 	deque->size++;
 }
 
-void push_back(Deque * const deque, uint8_t const * const element) {
+void deque_push_back(Deque * const deque, uint8_t const * const element) {
 	try_grow(deque);
 
     int32_t index;
@@ -86,31 +86,31 @@ void push_back(Deque * const deque, uint8_t const * const element) {
 	deque->size++;
 }
 
-void * front(Deque * const deque) {
+void * deque_front(Deque * const deque) {
 	return deque->elements + deque->start_index * deque->type_size;
 }
 
-void * back(Deque * const deque) {
+void * deque_back(Deque * const deque) {
     // TODO: Does this handle size=0 properly?
     int32_t index;
     index = (deque->start_index + deque->size - 1) % deque->capacity;
 	return deque->elements + index * deque->type_size;
 }
 
-void pop_front(Deque * const deque) {
+void deque_pop_front(Deque * const deque) {
 	deque->start_index = (deque->start_index + 1) % deque->capacity;
 	deque->size--;
 }
 
-void pop_back(Deque * const deque) {
+void deque_pop_back(Deque * const deque) {
 	deque->size--;
 }
 
-void * at(Deque const * const deque, int32_t index) {
+void * deque_at(Deque const * const deque, int32_t index) {
     return deque->elements + index * deque->type_size;
 }
 
-void delete(Deque * const deque) {
+void deque_delete(Deque * const deque) {
 	free(deque->elements);
 	deque->start_index = 0;
 	deque->size = 0;
@@ -118,45 +118,45 @@ void delete(Deque * const deque) {
 
 int32_t main(void) {
 	Deque deque;
-	deque = new(sizeof(Student));
+	deque = deque_new(sizeof(Student));
 
 	Student alice = {};
 	alice.age = 10;
-	push_back(&deque, (uint8_t *)&alice);
+	deque_push_back(&deque, (uint8_t *)&alice);
 
 	Student bob = {};
 	bob.age = 11;
-	push_back(&deque, (uint8_t *)&bob);
+	deque_push_back(&deque, (uint8_t *)&bob);
 
 	Student charles = {};
 	charles.age = 9;
-	push_front(&deque, (uint8_t *)&charles);
+	deque_push_front(&deque, (uint8_t *)&charles);
 
     Student const * student;
 
-    student = at(&deque, 3);
+    student = deque_at(&deque, 3);
 	assert(student->age == 9);
-    student = at(&deque, 0);
+    student = deque_at(&deque, 0);
 	assert(student->age == 10);
-    student = at(&deque, 1);
+    student = deque_at(&deque, 1);
 	assert(student->age == 11);
 
-    student = front(&deque);
+    student = deque_front(&deque);
 	assert(student->age == 9);
-	pop_front(&deque);
+	deque_pop_front(&deque);
 
-    student = back(&deque);
+    student = deque_back(&deque);
 	assert(student->age == 11);
-	pop_back(&deque);
+	deque_pop_back(&deque);
 
-	delete(&deque);
+	deque_delete(&deque);
 
-	deque = new(sizeof(Fruit));
+	deque = deque_new(sizeof(Fruit));
 	Fruit apple;
 	apple.name = "apple";
-	push_back(&deque, (uint8_t *)&apple);
-	assert(strcmp(((Fruit *)back(&deque))->name, "apple") == 0);
-	delete(&deque);
+	deque_push_back(&deque, (uint8_t *)&apple);
+	assert(strcmp(((Fruit *)deque_back(&deque))->name, "apple") == 0);
+	deque_delete(&deque);
 
 	return 0;
 }

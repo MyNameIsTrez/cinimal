@@ -16,7 +16,7 @@ struct Deque
 	size: i32
 	capacity: i32
 
-pub new(type_size: i32): Deque
+pub deque_new(type_size: i32): Deque
 	deque: mut Deque
 	deque = {}
 	deque.elements = calloc(1, type_size)
@@ -61,7 +61,7 @@ pri modulo(a: i32, b: i32): i32
 pri assign_element(deque: ptr Deque, element: ptr u8, index: i32)
 	memcpy(deque.elements + index * deque.type_size, element, deque.type_size)
 
-pub push_front(deque: ptr mut Deque, element: ptr u8)
+pub deque_push_front(deque: ptr mut Deque, element: ptr u8)
 	try_grow(deque)
 
 	deque.start_index = modulo(deque.start_index - 1, deque.capacity)
@@ -69,7 +69,7 @@ pub push_front(deque: ptr mut Deque, element: ptr u8)
 
 	deque.size++
 
-pub push_back(deque: ptr mut Deque, element: ptr u8)
+pub deque_push_back(deque: ptr mut Deque, element: ptr u8)
 	try_grow(deque)
 
     index: i32
@@ -78,71 +78,71 @@ pub push_back(deque: ptr mut Deque, element: ptr u8)
 
 	deque.size++
 
-pub front(deque: ptr mut Deque): ptr u8
+pub deque_front(deque: ptr mut Deque): ptr u8
 	return deque.elements + deque.start_index * deque.type_size
 
-pub back(deque: ptr mut Deque): ptr u8
+pub deque_back(deque: ptr mut Deque): ptr u8
     # TODO: Does this handle size=0 properly?
     index: i32
     index = (deque.start_index + deque.size - 1) % deque.capacity
 	return deque.elements + index * deque.type_size
 
-pub pop_front(deque: ptr mut Deque)
+pub deque_pop_front(deque: ptr mut Deque)
 	deque.start_index = (deque.start_index + 1) % deque.capacity
 	deque.size--
 
-pub pop_back(deque: ptr mut Deque)
+pub deque_pop_back(deque: ptr mut Deque)
 	deque.size--
 
-pub at(deque: ptr Deque, index: i32): ptr thing
+pub deque_at(deque: ptr Deque, index: i32): ptr thing
     return deque.elements + index * deque.type_size
 
-pub delete(deque: ptr mut Deque)
+pub deque_delete(deque: ptr mut Deque)
 	free(deque.elements)
 
 pub main(): i32
 	deque: mut Deque
-	deque = new(Student)
+	deque = deque_new(Student)
 
 	alice: mut Student
 	alice = {}
 	alice.age = 10
-	push_back(&deque, &alice)
+	deque_push_back(&deque, &alice)
 
 	bob: mut Student
 	bob = {}
 	bob.age = 11
-	push_back(&deque, &bob)
+	deque_push_back(&deque, &bob)
 
 	charles: mut Student
 	charles = {}
 	charles.age = 9
-	push_front(&deque, &charles)
+	deque_push_front(&deque, &charles)
 
 	student: mut ptr Student
 
-    student = at(&deque, 3);
+    student = deque_at(&deque, 3);
 	assert(student->age == 9);
-    student = at(&deque, 0);
+    student = deque_at(&deque, 0);
 	assert(student->age == 10);
-    student = at(&deque, 1);
+    student = deque_at(&deque, 1);
 	assert(student->age == 11);
 
-    student = front(&deque);
+    student = deque_front(&deque);
 	assert(student.age == 9);
-	pop_front(&deque);
+	deque_pop_front(&deque);
 
-    student = back(&deque);
+    student = deque_back(&deque);
 	assert(student.age == 11);
-	pop_back(&deque);
+	deque_pop_back(&deque);
 
-	delete(&deque)
+	deque_delete(&deque)
 
-	deque = new(Fruit)
+	deque = deque_new(Fruit)
 	Fruit apple
 	apple.name = "apple"
-	push_back(&deque, (ptr u8)&apple)
-	assert(((ptr Fruit)back(&deque)).name == "apple")
-	delete(&deque)
+	deque_push_back(&deque, (ptr u8)&apple)
+	assert(((ptr Fruit)deque_back(&deque)).name == "apple")
+	deque_delete(&deque)
 
 	return 0
