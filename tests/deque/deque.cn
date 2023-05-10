@@ -105,18 +105,15 @@ pub main(): i32
 	deque = deque_new(Student)
 
 	alice: mut Student
-	alice = {}
-	alice.age = 10
+	alice = {10}
 	deque_push_back(&deque, &alice)
 
 	bob: mut Student
-	bob = {}
-	bob.age = 11
+	bob = {11}
 	deque_push_back(&deque, &bob)
 
 	charles: mut Student
-	charles = {}
-	charles.age = 9
+	charles = {9}
 	deque_push_front(&deque, &charles)
 
 	student: mut ptr Student

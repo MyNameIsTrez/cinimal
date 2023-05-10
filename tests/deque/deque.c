@@ -120,16 +120,13 @@ int32_t main(void) {
 	Deque deque;
 	deque = deque_new(sizeof(Student));
 
-	Student alice = {};
-	alice.age = 10;
+	Student alice = {10};
 	deque_push_back(&deque, (uint8_t *)&alice);
 
-	Student bob = {};
-	bob.age = 11;
+	Student bob = {11};
 	deque_push_back(&deque, (uint8_t *)&bob);
 
-	Student charles = {};
-	charles.age = 9;
+	Student charles = {9};
 	deque_push_front(&deque, (uint8_t *)&charles);
 
     Student const * student;
