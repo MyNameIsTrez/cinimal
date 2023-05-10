@@ -84,7 +84,7 @@ pub front(deque: ptr mut Deque): ptr u8
 pub back(deque: ptr mut Deque): ptr u8
     # TODO: Does this handle size=0 properly?
     index: i32
-    index = (deque->start_index + deque->size - 1) % deque->capacity
+    index = (deque.start_index + deque.size - 1) % deque.capacity
 	return deque.elements + index * deque.type_size
 
 pub pop_front(deque: ptr mut Deque)
@@ -93,6 +93,9 @@ pub pop_front(deque: ptr mut Deque)
 
 pub pop_back(deque: ptr mut Deque)
 	deque.size--
+
+pub at(deque: ptr Deque, index: i32): ptr thing
+    return deque.elements + index * deque.type_size
 
 pub delete(deque: ptr mut Deque)
 	free(deque.elements)
@@ -116,14 +119,22 @@ pub main(): i32
 	charles.age = 9
 	push_front(&deque, &charles)
 
-	assert(deque.elements[3].age == 9)
-	assert(deque.elements[0].age == 10)
-	assert(deque.elements[1].age == 11)
+	student: mut ptr Student
 
-	assert(front(&deque).age == 9)
-	pop_front(&deque)
-	assert(back(&deque).age == 11)
-	pop_back(&deque)
+    student = at(&deque, 3);
+	assert(student->age == 9);
+    student = at(&deque, 0);
+	assert(student->age == 10);
+    student = at(&deque, 1);
+	assert(student->age == 11);
+
+    student = front(&deque);
+	assert(student.age == 9);
+	pop_front(&deque);
+
+    student = back(&deque);
+	assert(student.age == 11);
+	pop_back(&deque);
 
 	delete(&deque)
 

@@ -86,11 +86,11 @@ void push_back(Deque * const deque, uint8_t const * const element) {
 	deque->size++;
 }
 
-uint8_t * front(Deque * const deque) {
+void * front(Deque * const deque) {
 	return deque->elements + deque->start_index * deque->type_size;
 }
 
-uint8_t * back(Deque * const deque) {
+void * back(Deque * const deque) {
     // TODO: Does this handle size=0 properly?
     int32_t index;
     index = (deque->start_index + deque->size - 1) % deque->capacity;
@@ -104,6 +104,10 @@ void pop_front(Deque * const deque) {
 
 void pop_back(Deque * const deque) {
 	deque->size--;
+}
+
+void * at(Deque const * const deque, int32_t index) {
+    return deque->elements + index * deque->type_size;
 }
 
 void delete(Deque * const deque) {
@@ -128,17 +132,20 @@ int32_t main(void) {
 	charles.age = 9;
 	push_front(&deque, (uint8_t *)&charles);
 
-	assert(((Student *)(deque.elements + 3 * deque.type_size))->age == 9);
-	assert(((Student *)(deque.elements + 0 * deque.type_size))->age == 10);
-	assert(((Student *)(deque.elements + 1 * deque.type_size))->age == 11);
+    Student const * student;
 
-    Student * student;
+    student = at(&deque, 3);
+	assert(student->age == 9);
+    student = at(&deque, 0);
+	assert(student->age == 10);
+    student = at(&deque, 1);
+	assert(student->age == 11);
 
-    student = (Student *)front(&deque);
+    student = front(&deque);
 	assert(student->age == 9);
 	pop_front(&deque);
 
-    student = (Student *)back(&deque);
+    student = back(&deque);
 	assert(student->age == 11);
 	pop_back(&deque);
 
