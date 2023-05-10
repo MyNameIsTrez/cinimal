@@ -31,22 +31,27 @@ Deque deque_new(int32_t type_size) {
 void deque_reserve(Deque * const deque, int32_t const new_capacity) {
 	uint8_t * const new_elements = calloc(new_capacity, deque->type_size);
 
-	// An example deque is [B,C, ,A], where the start_index is 3
-	int32_t trailing;
-	trailing = deque->capacity - deque->start_index;
+	int32_t on_right;
+	if (deque->start_index > 0) {
+	    // An example deque is [B,C, ,A], where the start_index is 3
+	    on_right = deque->capacity - deque->start_index;
+	} else {
+	    // An example deque is [A, , , ], where the start_index is 0
+	    on_right = 0;
+	}
 
 	// Copies everything to the right of the unused elements
 	memcpy(
 	    new_elements,
 	    deque->elements + deque->start_index * deque->type_size,
-	    trailing * deque->type_size
+	    on_right * deque->type_size
 	);
 
 	// Copies everything to the left of the unused elements
 	memcpy(
-	    new_elements + trailing * deque->type_size,
+	    new_elements + on_right * deque->type_size,
 	    deque->elements,
-	    (deque->size - trailing) * deque->type_size
+	    (deque->size - on_right) * deque->type_size
 	);
 
 	free(deque->elements);
@@ -151,12 +156,15 @@ int32_t main(void) {
 	deque_delete(&deque);
 
 	deque = deque_new(sizeof(Fruit));
+
 	deque_reserve(&deque, 100);
+	deque_push_back(&deque, &charles);
+	deque_reserve(&deque, 200);
 
 	Fruit apple;
 	apple.name = "apple";
 	deque_push_back(&deque, &apple);
-	deque_set(&deque, &(Fruit){"banana"}, 0);
+	deque_set(&deque, &(Fruit){"banana"}, 1);
 	assert(strcmp(((Fruit *)deque_back(&deque))->name, "banana") == 0);
 
 	deque_delete(&deque);
