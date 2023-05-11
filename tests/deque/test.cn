@@ -1,11 +1,12 @@
 import { deque_at, deque_back, deque_delete, deque_front, deque_new, deque_pop_back, deque_pop_front, deque_push_back, deque_push_front, deque_reserve, deque_set } from "deque.h"
 
 import { assert } from <assert.h>
+import { f64, i32 } from <stdint.h>
 
-struct Student
+struct typedef Student
 	age: f64
 
-struct Fruit
+struct typedef Fruit
 	name: ptr char
 
 pub main(): i32
@@ -26,18 +27,18 @@ pub main(): i32
 
 	student: mut ptr Student
 
-    student = deque_at(&deque, 3)
-	assert(student->age == 9)
-    student = deque_at(&deque, 0)
-	assert(student->age == 10)
-    student = deque_at(&deque, 1)
-	assert(student->age == 11)
+	student = deque_at(&deque, 3)
+	assert(student.age == 9)
+	student = deque_at(&deque, 0)
+	assert(student.age == 10)
+	student = deque_at(&deque, 1)
+	assert(student.age == 11)
 
-    student = deque_front(&deque)
+	student = deque_front(&deque)
 	assert(student.age == 9)
 	deque_pop_front(&deque)
 
-    student = deque_back(&deque)
+	student = deque_back(&deque)
 	assert(student.age == 11)
 	deque_pop_back(&deque)
 

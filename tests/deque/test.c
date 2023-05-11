@@ -1,6 +1,7 @@
 #include "deque.h"
 
 #include <assert.h>
+#include <stdint.h>
 
 typedef struct {
 	double age;
@@ -23,20 +24,20 @@ int32_t main(void) {
 	Student charles = {9};
 	deque_push_front(&deque, &charles);
 
-    Student const * student;
+	Student const * student;
 
-    student = deque_at(&deque, 3);
+	student = deque_at(&deque, 3);
 	assert(student->age == 9);
-    student = deque_at(&deque, 0);
+	student = deque_at(&deque, 0);
 	assert(student->age == 10);
-    student = deque_at(&deque, 1);
+	student = deque_at(&deque, 1);
 	assert(student->age == 11);
 
-    student = deque_front(&deque);
+	student = deque_front(&deque);
 	assert(student->age == 9);
 	deque_pop_front(&deque);
 
-    student = deque_back(&deque);
+	student = deque_back(&deque);
 	assert(student->age == 11);
 	deque_pop_back(&deque);
 

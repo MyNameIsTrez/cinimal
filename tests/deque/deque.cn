@@ -47,10 +47,10 @@ pub deque_reserve(deque: ptr mut Deque, new_capacity: i32)
 		deque.capacity = new_capacity
 
 pri modulo(a: i32, b: i32): i32
-    # TODO: Can be done more efficiently
-    return ((a % b) + b) % b
+	# TODO: Can be done more efficiently
+	return ((a % b) + b) % b
 
-pub deque_set(deque: ptr Deque, element: ptr thing, index: i32)
+pub deque_set(deque: ptr mut Deque, element: ptr thing, index: i32)
 	memcpy(deque.elements + index * deque.type_size, element, deque.type_size)
 
 pub deque_push_front(deque: ptr mut Deque, element: ptr thing)
@@ -66,8 +66,8 @@ pub deque_push_back(deque: ptr mut Deque, element: ptr thing)
 	if deque.size == deque.capacity
 		deque_reserve(deque, deque.capacity * 2)
 
-    index: i32
-    index = (deque.start_index + deque.size) % deque.capacity
+	index: i32
+	index = (deque.start_index + deque.size) % deque.capacity
 	deque_set(deque, element, index)
 
 	deque.size++
@@ -76,9 +76,9 @@ pub deque_front(deque: ptr mut Deque): ptr thing
 	return deque.elements + deque.start_index * deque.type_size
 
 pub deque_back(deque: ptr mut Deque): ptr thing
-    # TODO: Does this handle size=0 properly?
-    index: i32
-    index = (deque.start_index + deque.size - 1) % deque.capacity
+	# TODO: Does this handle size=0 properly?
+	index: i32
+	index = (deque.start_index + deque.size - 1) % deque.capacity
 	return deque.elements + index * deque.type_size
 
 pub deque_pop_front(deque: ptr mut Deque)
@@ -89,7 +89,7 @@ pub deque_pop_back(deque: ptr mut Deque)
 	deque.size--
 
 pub deque_at(deque: ptr Deque, index: i32): ptr thing
-    return deque.elements + index * deque.type_size
+	return deque.elements + index * deque.type_size
 
 pub deque_delete(deque: ptr mut Deque)
 	free(deque.elements)
