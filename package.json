@@ -177,6 +177,12 @@
             "markdownDescription": "Turn `#include <assert.h>` into `import { assert } from <assert.h>`",
             "default": true,
             "order": 22
+          },
+          "cinimal.importMeOnce": {
+            "type": "boolean",
+            "markdownDescription": "Turn `#pragma once` into `import me once`",
+            "default": true,
+            "order": 23
           }
         }
       }
