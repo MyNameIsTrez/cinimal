@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 static void add(int32_t * const n) {
-    (*n)++;
+	(*n)++;
 }
 
 int32_t main(void) {

@@ -49,7 +49,7 @@ pub main(): i32
 	values: mut ptr mut Value
 	values = calloc(2, Value)
 
-    v0: ptr mut Value
+	v0: ptr mut Value
 	v0 = &values[0]
 	v0.type = STRING
 	assert(values[0].type == STRING)

@@ -7,24 +7,24 @@
 #include <string.h>
 
 enum Type {
-    INTEGER,
-    STRING,
+	INTEGER,
+	STRING,
 };
 
 typedef struct {
-    enum Type type;
-    union {
-        int32_t integer;
-        char * string;
-    };
+	enum Type type;
+	union {
+		int32_t integer;
+		char * string;
+	};
 } Value;
 
 static void * allocate_one_value(void) {
-    return calloc(1, sizeof(Value));
+	return calloc(1, sizeof(Value));
 }
 
 static void add(int32_t * const n) {
-    (*n)++;
+	(*n)++;
 }
 
 int32_t main(void) {
@@ -52,7 +52,7 @@ int32_t main(void) {
 
 	Value * values = calloc(2, sizeof(Value));
 
-    Value * const v0 = &values[0];
+	Value * const v0 = &values[0];
 	v0->type = STRING;
 	assert(values[0].type == STRING);
 	assert(v0->string == NULL);
