@@ -1,0 +1,56 @@
+import { vector_at, vector_back, vector_delete, vector_new, vector_pop_back, vector_push, vector_set } from "vector.h"
+
+import { assert } from <assert.h>
+import { f64, i32 } from <stdint.h>
+
+struct typedef Student
+	age: f64
+
+struct typedef Fruit
+	name: ptr char
+
+pub main(): i32
+	vector: mut Vector
+	vector = vector_new(Student)
+
+	alice: mut Student
+	alice = {10}
+	vector_push(&vector, &alice)
+
+	bob: mut Student
+	bob = {11}
+	vector_push(&vector, &bob)
+
+	student: mut ptr Student
+
+	student = vector_at(&vector, 0)
+	assert(student.age == 10)
+	student = vector_at(&vector, 1)
+	assert(student.age == 11)
+
+	student = vector_back(&vector)
+	assert(student.age == 11)
+	vector_pop_back(&vector)
+
+	student = vector_back(&vector)
+	assert(student.age == 10)
+	vector_pop_back(&vector)
+
+	vector_delete(&vector)
+
+	vector = vector_new(sizeof(Fruit))
+
+	vector_reserve(&vector, 100);
+	vector_push(&vector, &bob);
+	vector_reserve(&vector, 200);
+
+	Fruit apple
+	apple.name = "apple"
+	vector_push(&vector, &apple)
+	vector_set(&vector, &(Fruit){"banana"}, 1)
+	assert(strcmp(((Fruit *)vector_back(&vector)).name, "banana") == 0)
+
+	vector_delete(&vector)
+
+	return 0
+}

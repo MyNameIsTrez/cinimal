@@ -1,0 +1,17 @@
+import me once
+
+import { Deque, deque_at, deque_back, deque_delete, deque_new, deque_pop_back, deque_push_back, deque_set } from "deque.h"
+
+import { f64, i32 } from <stdint.h>
+
+struct typedef Vector
+	Deque deque
+
+pub vector_new(type_size: i32): Vector
+pub vector_reserve(vector: ptr mut Vector, new_capacity: i32)
+pub vector_set(vector: ptr mut Vector, element: ptr thing, index: i32)
+pub vector_push(vector: ptr mut Vector, element: ptr thing)
+pub vector_back(vector: ptr mut Vector): ptr thing
+pub vector_pop_back(vector: ptr mut Vector)
+pub vector_at(vector: ptr Vector, index: i32): ptr thing
+pub vector_delete(vector: ptr mut Vector)

@@ -1,0 +1,28 @@
+import { Deque, deque_at, deque_back, deque_delete, deque_new, deque_pop_back, deque_push_back, deque_set } from "deque.h"
+import { vector_at, vector_back, vector_delete, vector_new, vector_pop_back, vector_push, vector_set } from "vector.h"
+
+import { f64, i32 } from <stdint.h>
+
+pub vector_new(type_size: i32): Vector
+	return (Vector){ deque_new(type_size) }
+
+pub vector_reserve(vector: ptr mut Vector, new_capacity: i32)
+	deque_reserve(&vector.deque, new_capacity)
+
+pub vector_set(vector: ptr mut Vector, element: ptr thing, index: i32)
+	deque_set(&vector.deque, element, index)
+
+pub vector_push(vector: ptr mut Vector, element: ptr thing)
+	deque_push_back(&vector.deque, element)
+
+pub vector_back(vector: ptr mut Vector): ptr thing
+	return deque_back(&vector.deque)
+
+pub vector_pop_back(vector: ptr mut Vector)
+	deque_pop_back(&vector.deque)
+
+pub vector_at(vector: ptr Vector, index: i32): ptr thing
+	return deque_at(&vector.deque, index)
+
+pub vector_delete(vector: ptr mut Vector)
+	deque_delete(&vector.deque)
