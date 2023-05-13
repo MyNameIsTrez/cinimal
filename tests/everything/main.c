@@ -45,14 +45,8 @@ int32_t main(void) {
 	add(&i);
 	assert(i == 4);
 
-	for (i = 0; i < 2; i++) {
+	for (int32_t j = 0; j < 2; j++) {
 		// Prints 0, 1
-		printf("%d\n", i);
-	}
-
-	int32_t j;
-	for (j = 2; j > 0; j--) {
-		// Prints 2, 1
 		printf("%d\n", j);
 	}
 

@@ -41,13 +41,9 @@ pub main(): i32
 	add(&i)
 	assert(i == 4)
 
-	for i = 0, 2
-		# Prints 0, 1
-		print("%d", i)
-
 	j: mut i32
-	for j = 2, 0, -1
-		# Prints 2, 1
+	for j = 0; j < 2; j++
+		# Prints 0, 1
 		print("%d", j)
 
 	bark()
