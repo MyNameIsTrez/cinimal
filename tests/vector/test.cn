@@ -53,4 +53,3 @@ pub main(): i32
 	vector_delete(&vector)
 
 	return 0
-}

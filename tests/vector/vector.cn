@@ -1,4 +1,4 @@
-import { Deque, deque_at, deque_back, deque_delete, deque_new, deque_pop_back, deque_push_back, deque_set } from "deque.h"
+import { deque_at, deque_back, deque_delete, deque_new, deque_pop_back, deque_push_back, deque_set } from "deque.h"
 import { vector_at, vector_back, vector_delete, vector_new, vector_pop_back, vector_push, vector_set } from "vector.h"
 
 import { f64, i32 } from <stdint.h>
