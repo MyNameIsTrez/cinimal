@@ -8,7 +8,7 @@ typedef struct {
 } Student;
 
 typedef struct {
-	char *name;
+	char * name;
 } Fruit;
 
 int32_t main(void) {
