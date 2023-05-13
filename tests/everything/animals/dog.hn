@@ -1,5 +1,3 @@
-import me once
-
 import { i32 } from <stdint.h>
 
 pub bark()
