@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR_H
+# define VECTOR_H
 
 #include "deque.h"
 
@@ -16,3 +17,5 @@ void * vector_back(Vector * const vector);
 void vector_pop_back(Vector * const vector);
 void * vector_at(Vector const * const vector, int32_t index);
 void vector_delete(Vector * const vector);
+
+#endif

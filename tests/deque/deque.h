@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DEQUE_H
+# define DEQUE_H
 
 #include <stdint.h>
 
@@ -21,3 +22,5 @@ void deque_pop_front(Deque * const deque);
 void deque_pop_back(Deque * const deque);
 void * deque_at(Deque const * const deque, int32_t const index);
 void deque_delete(Deque * const deque);
+
+#endif
