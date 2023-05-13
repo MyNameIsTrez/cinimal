@@ -14,8 +14,8 @@
 !tests/**/*.h
 !tests/**/*.hn
 
-!vsicons-custom-icons/file_type_cn.png
-!vsicons-custom-icons/file_type_cn.svg
+!vsicons-custom-icons/file_type_*.png
+!vsicons-custom-icons/file_type_*.svg
 
 !./.eslintrc.json
 !./.gitignore

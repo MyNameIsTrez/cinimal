@@ -24,7 +24,8 @@
           "cinimal"
         ],
         "extensions": [
-          ".cn"
+          ".cn",
+          ".hn"
         ],
         "configuration": "./language-configuration.json"
       }
