@@ -45,16 +45,15 @@ int32_t main(void) {
 	add(&i);
 	assert(i == 4);
 
-	int32_t j;
-	for (j = 0; j < 2; j++) {
+	for (i = 0; i < 2; i++) {
 		// Prints 0, 1
-		printf("%d\n", j);
+		printf("%d\n", i);
 	}
 
-	int32_t k;
-	for (k = 2; k > 0; k--) {
+	int32_t j;
+	for (j = 2; j > 0; j--) {
 		// Prints 2, 1
-		printf("%d\n", k);
+		printf("%d\n", j);
 	}
 
 	bark();
