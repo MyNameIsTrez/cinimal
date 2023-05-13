@@ -41,6 +41,16 @@ pub main(): i32
 	add(&i)
 	assert(i == 4)
 
+	j: mut i32
+	for j = 0, 2
+		# Prints 0, 1
+		print("%d", j)
+
+	k: mut i32
+	for k = 2, 0, -1
+		# Prints 2, 1
+		print("%d", k)
+
 	bark()
 	assert(get_paw_count() == 4)
 

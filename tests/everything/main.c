@@ -45,6 +45,18 @@ int32_t main(void) {
 	add(&i);
 	assert(i == 4);
 
+	int32_t j;
+	for (j = 0; j < 2; j++) {
+		// Prints 0, 1
+		printf("%d\n", j);
+	}
+
+	int32_t k;
+	for (k = 2; k > 0; k--) {
+		// Prints 2, 1
+		printf("%d\n", k);
+	}
+
 	bark();
 	assert(get_paw_count() == 4);
 
