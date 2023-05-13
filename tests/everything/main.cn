@@ -15,10 +15,10 @@ struct typedef Value
 		integer: i32
 		string: ptr char
 
-pri allocate_one_value(): ptr thing
+allocate_one_value(): ptr thing
 	return calloc(1, Value)
 
-pri add(n: ptr mut i32)
+add(n: ptr mut i32)
 	n*++
 
 pub main(): i32

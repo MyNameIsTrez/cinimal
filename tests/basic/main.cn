@@ -2,7 +2,7 @@ import { assert } from <assert.h>
 import { i32 } from <stdint.h>
 import { print } from <stdio.h>
 
-pri add(n: ptr mut i32)
+add(n: ptr mut i32)
 	n*++
 
 pub main(): i32

@@ -30,9 +30,6 @@
 			"include": "#pub"
 		},
 		{
-			"include": "#pri"
-		},
-		{
 			"include": "#strings"
 		},
 		{
@@ -150,16 +147,8 @@
 		"pub": {
 			"patterns": [
 				{
-					"name": "keyword.control",
+					"name": "keyword.other",
 					"match": "\\b(pub)\\b"
-				}
-			]
-		},
-		"pri": {
-			"patterns": [
-				{
-					"name": "storage.type",
-					"match": "\\b(pri)\\b"
 				}
 			]
 		},

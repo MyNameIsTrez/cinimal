@@ -46,7 +46,7 @@ pub deque_reserve(deque: ptr mut Deque, new_capacity: i32)
 		deque.start_index = 0
 		deque.capacity = new_capacity
 
-pri modulo(a: i32, b: i32): i32
+modulo(a: i32, b: i32): i32
 	# TODO: Can be done more efficiently
 	return ((a % b) + b) % b
 
