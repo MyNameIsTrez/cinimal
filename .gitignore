@@ -13,6 +13,7 @@
 !tests/**/*.cn
 !tests/**/*.h
 !tests/**/*.hn
+!tests/**/run.bat
 
 !vsicons-custom-icons/file_type_*.png
 !vsicons-custom-icons/file_type_*.svg

@@ -48,7 +48,7 @@ pub main(): i32
 	apple.name = "apple"
 	vector_push(&vector, &apple)
 	vector_set(&vector, &(Fruit){"banana"}, 1)
-	assert(strcmp(((Fruit *)vector_back(&vector)).name, "banana") == 0)
+	assert(((Fruit *)vector_back(&vector)).name == "banana")
 
 	vector_delete(&vector)
 

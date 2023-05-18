@@ -77,7 +77,5 @@ int32_t main(void) {
 	matrix[0][2].integer = 13;
 	assert(matrix[0][2].integer == 13);
 
-	printf("All tests passed!\n");
-
 	return 0;
 }
