@@ -73,9 +73,9 @@ int32_t main(void) {
 	assert(values[0].integer == 42);
 	free(values);
 
-	Value matrix[2][3] = {0};
-	matrix[0][2].integer = 13;
-	assert(matrix[0][2].integer == 13);
+	Value matrix[2][4] = {0};
+	matrix[0][3].integer = 13;
+	assert(matrix[0][3].integer == 13);
 
 	return 0;
 }
