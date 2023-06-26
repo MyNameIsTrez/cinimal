@@ -60,7 +60,7 @@
 		"import": {
 			"patterns": [
 				{
-					"match": "\\b(import) { ([\\w|,| ]+) } (from) (.+)$",
+					"match": "\\b(import) ([\\w|,| ]+) (from) (.+)$",
 					"captures": {
 						"1": {
 							"name": "keyword.control"

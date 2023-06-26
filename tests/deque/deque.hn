@@ -1,4 +1,4 @@
-import { f64, i32 } from <stdint.h>
+import f64, i32 from <stdint.h>
 
 struct typedef Deque
 	elements: ptr u8

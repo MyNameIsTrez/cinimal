@@ -1,7 +1,7 @@
-import { deque_at, deque_back, deque_delete, deque_front, deque_new, deque_pop_back, deque_pop_front, deque_push_back, deque_push_front, deque_reserve, deque_set } from "deque.h"
+import deque_at, deque_back, deque_delete, deque_front, deque_new, deque_pop_back, deque_pop_front, deque_push_back, deque_push_front, deque_reserve, deque_set from "deque.h"
 
-import { assert } from <assert.h>
-import { f64, i32 } from <stdint.h>
+import assert from <assert.h>
+import f64, i32 from <stdint.h>
 
 struct typedef Student
 	age: f64

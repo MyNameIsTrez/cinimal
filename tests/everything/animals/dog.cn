@@ -1,5 +1,5 @@
-import { i32 } from <stdint.h>
-import { print } from <stdio.h>
+import i32 from <stdint.h>
+import print from <stdio.h>
 
 pub bark()
 	print("bark")

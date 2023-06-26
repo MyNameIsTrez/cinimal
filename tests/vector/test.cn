@@ -1,7 +1,7 @@
-import { vector_at, vector_back, vector_delete, vector_new, vector_pop_back, vector_push, vector_set } from "vector.h"
+import vector_at, vector_back, vector_delete, vector_new, vector_pop_back, vector_push, vector_set from "vector.h"
 
-import { assert } from <assert.h>
-import { f64, i32 } from <stdint.h>
+import assert from <assert.h>
+import f64, i32 from <stdint.h>
 
 struct typedef Student
 	age: f64
