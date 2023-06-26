@@ -2,11 +2,11 @@ import assert from <assert.h>
 import i32 from <stdint.h>
 import print from <stdio.h>
 
-add(n: ptr mut i32)
+add(n ptr mut i32)
 	n*++
 
-pub main(): i32
-	i: mut i32
+pub main() i32
+	i mut i32
 	i = 0
 
 	while i < 3

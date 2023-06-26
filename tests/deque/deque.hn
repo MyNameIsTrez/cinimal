@@ -1,20 +1,20 @@
 import f64, i32 from <stdint.h>
 
 struct typedef Deque
-	elements: ptr u8
-	type_size: i32
-	start_index: i32
-	size: i32
-	capacity: i32
+	elements ptr u8
+	type_size i32
+	start_index i32
+	size i32
+	capacity i32
 
-pub deque_new(type_size: i32): Deque
-pub deque_reserve(deque: ptr mut Deque, new_capacity: i32)
-pub deque_set(deque: ptr mut Deque, element: ptr thing, index: i32)
-pub deque_push_front(deque: ptr mut Deque, element: ptr thing)
-pub deque_push_back(deque: ptr mut Deque, element: ptr thing)
-pub deque_front(deque: ptr mut Deque): ptr thing
-pub deque_back(deque: ptr mut Deque): ptr thing
-pub deque_pop_front(deque: ptr mut Deque)
-pub deque_pop_back(deque: ptr mut Deque)
-pub deque_at(deque: ptr Deque, index: i32): ptr thing
-pub deque_delete(deque: ptr mut Deque)
+pub deque_new(type_size i32) Deque
+pub deque_reserve(deque ptr mut Deque, new_capacity i32)
+pub deque_set(deque ptr mut Deque, element ptr thing, index i32)
+pub deque_push_front(deque ptr mut Deque, element ptr thing)
+pub deque_push_back(deque ptr mut Deque, element ptr thing)
+pub deque_front(deque ptr mut Deque) ptr thing
+pub deque_back(deque ptr mut Deque) ptr thing
+pub deque_pop_front(deque ptr mut Deque)
+pub deque_pop_back(deque ptr mut Deque)
+pub deque_at(deque ptr Deque, index i32) ptr thing
+pub deque_delete(deque ptr mut Deque)

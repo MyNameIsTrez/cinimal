@@ -4,28 +4,28 @@ import assert from <assert.h>
 import f64, i32 from <stdint.h>
 
 struct typedef Student
-	age: f64
+	age f64
 
 struct typedef Fruit
-	name: ptr char
+	name ptr char
 
-pub main(): i32
-	deque: mut Deque
+pub main() i32
+	deque mut Deque
 	deque = deque_new(Student)
 
-	alice: mut Student
+	alice mut Student
 	alice = {10}
 	deque_push_back(&deque, &alice)
 
-	bob: mut Student
+	bob mut Student
 	bob = {11}
 	deque_push_back(&deque, &bob)
 
-	charles: mut Student
+	charles mut Student
 	charles = {9}
 	deque_push_front(&deque, &charles)
 
-	student: mut ptr Student
+	student mut ptr Student
 
 	student = deque_at(&deque, 3)
 	assert(student.age == 9)

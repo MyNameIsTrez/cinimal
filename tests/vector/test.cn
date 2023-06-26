@@ -4,24 +4,24 @@ import assert from <assert.h>
 import f64, i32 from <stdint.h>
 
 struct typedef Student
-	age: f64
+	age f64
 
 struct typedef Fruit
-	name: ptr char
+	name ptr char
 
-pub main(): i32
-	vector: mut Vector
+pub main() i32
+	vector mut Vector
 	vector = vector_new(Student)
 
-	alice: mut Student
+	alice mut Student
 	alice = {10}
 	vector_push(&vector, &alice)
 
-	bob: mut Student
+	bob mut Student
 	bob = {11}
 	vector_push(&vector, &bob)
 
-	student: mut ptr Student
+	student mut ptr Student
 
 	student = vector_at(&vector, 0)
 	assert(student.age == 10)

@@ -10,22 +10,22 @@ enum Type
 	STRING
 
 struct typedef Value
-	type: enum Type
+	type enum Type
 	union
-		integer: i32
-		string: ptr char
+		integer i32
+		string ptr char
 
-allocate_one_value(): ptr thing
+allocate_one_value() ptr thing
 	return calloc(1, Value)
 
-add(n: ptr mut i32)
+add(n ptr mut i32)
 	n*++
 
-pub main(): i32
+pub main() i32
 	# single line comment
 	# multiline
 	# comment
-	i: mut i32
+	i mut i32
 	i = 0
 
 	while i < 3
@@ -41,7 +41,7 @@ pub main(): i32
 	add(&i)
 	assert(i == 4)
 
-	j: mut i32
+	j mut i32
 	for j = 0; j < 2; j++
 		# Prints 0, 1
 		print("%d", j)
@@ -51,10 +51,10 @@ pub main(): i32
 
 	assert(STRING == 1)
 
-	values: mut ptr mut Value
+	values mut ptr mut Value
 	values = calloc(2, Value)
 
-	v0: ptr mut Value
+	v0 ptr mut Value
 	v0 = &values[0]
 	v0.type = STRING
 	assert(values[0].type == STRING)
@@ -71,7 +71,7 @@ pub main(): i32
 	assert(values[0].integer == 42)
 	free(values)
 
-	matrix: [2][4] mut Value
+	matrix [2][4] mut Value
 	matrix = {0}
 	matrix[0][3].integer = 13
 	assert(matrix[0][3].integer == 13)
