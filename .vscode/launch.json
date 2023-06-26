@@ -1,7 +1,5 @@
-// A launch configuration that compiles the extension and then opens it inside a new window
-// Use IntelliSense to learn about possible attributes.
-// Hover to view descriptions of existing attributes.
-// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+// If launching is stuck on "Building...", open the Output window, filter it to the C/C++ extension, and reopen VS Code.
+// If the Output window is still visible, then launching seems to always work, for some reason.
 {
 	"version": "0.2.0",
 	"configurations": [
