@@ -1,1 +1,1 @@
-..\..\tcc\tcc -I..\deque *.c ..\deque\deque.c -o main.exe && main.exe
+zig cc test.c vector.c -I../deque ../deque/deque.c -o main.exe && main.exe

@@ -1,1 +1,1 @@
-..\..\tcc\tcc *.c animals\*.c -o main.exe && main.exe
+zig cc animals/dog.c main.c -o main.exe && main.exe
